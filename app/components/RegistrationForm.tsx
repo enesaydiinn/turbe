@@ -29,6 +29,8 @@ const academicTitles = [
   "Diğer",
 ];
 
+const abstractLanguages = ["Türkçe", "Arapça", "İngilizce"];
+
 function countWords(value: string) {
   return value
     .trim()
@@ -69,6 +71,17 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
       return;
     }
 
+    const keywordCount = stringValue(form, "keywords")
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter(Boolean).length;
+
+    if (keywordCount < 3 || keywordCount > 5) {
+      setStatus("error");
+      setMessage("Anahtar kelimeler 3-5 ifade arasında olmalıdır.");
+      return;
+    }
+
     const speakers =
       applicationType === "panel"
         ? [1, 2, 3, 4]
@@ -90,11 +103,15 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
       phone: stringValue(form, "phone"),
       countryCity: stringValue(form, "countryCity"),
       institution: stringValue(form, "institution"),
+      orcid: stringValue(form, "orcid"),
       profession: stringValue(form, "profession"),
       academicTitle: stringValue(form, "academicTitle"),
       topic: stringValue(form, "topic"),
       paperTitle: stringValue(form, "paperTitle"),
       panelTitle: stringValue(form, "panelTitle"),
+      presentingAuthor: stringValue(form, "presentingAuthor"),
+      abstractLanguage: stringValue(form, "abstractLanguage"),
+      keywords: stringValue(form, "keywords"),
       abstractText,
       publishedBefore: stringValue(form, "publishedBefore"),
       notes: stringValue(form, "notes"),
@@ -179,6 +196,10 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
           <span>Ülke / Şehir *</span>
           <input name="countryCity" required type="text" />
         </label>
+        <label className="field">
+          <span>ORCID</span>
+          <input name="orcid" placeholder="0000-0000-0000-0000" type="text" />
+        </label>
       </fieldset>
 
       <fieldset>
@@ -239,34 +260,34 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
             <div className="speaker-row" key={speaker}>
               <h4>{speaker}. Tebliğci</h4>
               <label className="field">
-                <span>Ad Soyad {speaker <= 2 ? "*" : ""}</span>
+                <span>Ad Soyad *</span>
                 <input
                   name={`speaker${speaker}FullName`}
-                  required={speaker <= 2}
+                  required
                   type="text"
                 />
               </label>
               <label className="field">
-                <span>Kurum {speaker <= 2 ? "*" : ""}</span>
+                <span>Kurum *</span>
                 <input
                   name={`speaker${speaker}Institution`}
-                  required={speaker <= 2}
+                  required
                   type="text"
                 />
               </label>
               <label className="field">
-                <span>E-posta {speaker <= 2 ? "*" : ""}</span>
+                <span>E-posta *</span>
                 <input
                   name={`speaker${speaker}Email`}
-                  required={speaker <= 2}
+                  required
                   type="email"
                 />
               </label>
               <label className="field">
-                <span>Tebliğ Başlığı {speaker <= 2 ? "*" : ""}</span>
+                <span>Tebliğ Başlığı *</span>
                 <input
                   name={`speaker${speaker}PaperTitle`}
-                  required={speaker <= 2}
+                  required
                   type="text"
                 />
               </label>
@@ -280,6 +301,27 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
         <label className="field field-wide">
           <span>{applicationType === "panel" ? "Panel Başlığı *" : "Tebliğ Başlığı *"}</span>
           <input name="paperTitle" required type="text" />
+        </label>
+        <label className="field">
+          <span>Sunumu Gerçekleştirecek Yazar *</span>
+          <input name="presentingAuthor" required type="text" />
+        </label>
+        <label className="field">
+          <span>Özet Dili *</span>
+          <select defaultValue="" name="abstractLanguage" required>
+            <option disabled value="">
+              Seçiniz
+            </option>
+            {abstractLanguages.map((language) => (
+              <option key={language} value={language}>
+                {language}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="field field-wide">
+          <span>Anahtar Kelimeler * <small>3-5 ifade, virgülle ayırın</small></span>
+          <input name="keywords" required type="text" />
         </label>
         <div className="field field-wide radio-field">
           <span>Metin daha önce yayımlandı mı? *</span>

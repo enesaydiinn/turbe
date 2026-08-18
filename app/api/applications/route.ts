@@ -14,11 +14,15 @@ type ApplicationPayload = {
   phone: string;
   countryCity: string;
   institution: string;
+  orcid: string;
   profession: string;
   academicTitle: string;
   topic: string;
   paperTitle: string;
   panelTitle: string;
+  presentingAuthor: string;
+  abstractLanguage: string;
+  keywords: string;
   abstractText: string;
   publishedBefore: string;
   notes: string;
@@ -80,11 +84,15 @@ function normalizePayload(value: unknown): ApplicationPayload {
     phone: text(record.phone, 80),
     countryCity: text(record.countryCity, 180),
     institution: text(record.institution, 240),
+    orcid: text(record.orcid, 80),
     profession: text(record.profession, 120),
     academicTitle: text(record.academicTitle, 120),
     topic: text(record.topic, 240),
     paperTitle: text(record.paperTitle, 300),
     panelTitle: text(record.panelTitle, 300),
+    presentingAuthor: text(record.presentingAuthor, 180),
+    abstractLanguage: text(record.abstractLanguage, 80),
+    keywords: text(record.keywords, 320),
     abstractText: text(record.abstractText, 3200),
     publishedBefore: record.publishedBefore === "yes" ? "yes" : "no",
     notes: text(record.notes, 1600),
@@ -104,6 +112,9 @@ function validatePayload(payload: ApplicationPayload) {
     payload.academicTitle,
     payload.topic,
     payload.paperTitle,
+    payload.presentingAuthor,
+    payload.abstractLanguage,
+    payload.keywords,
     payload.abstractText,
   ];
 
@@ -120,6 +131,19 @@ function validatePayload(payload: ApplicationPayload) {
     return "Özet metni 150-300 kelime aralığında olmalıdır.";
   }
 
+  const keywordCount = payload.keywords
+    .split(",")
+    .map((keyword) => keyword.trim())
+    .filter(Boolean).length;
+
+  if (keywordCount < 3 || keywordCount > 5) {
+    return "Anahtar kelimeler 3-5 ifade arasında olmalıdır.";
+  }
+
+  if (!["Türkçe", "Arapça", "İngilizce"].includes(payload.abstractLanguage)) {
+    return "Özet dili Türkçe, Arapça veya İngilizce olmalıdır.";
+  }
+
   if (payload.applicationType === "panel") {
     if (!payload.panelTitle) {
       return "Panel konusu zorunludur.";
@@ -133,8 +157,8 @@ function validatePayload(payload: ApplicationPayload) {
         speaker.paperTitle,
     );
 
-    if (completeSpeakers.length < 2) {
-      return "Panel başvurusu için en az iki tebliğci bilgisi gereklidir.";
+    if (completeSpeakers.length < 4) {
+      return "Panel başvurusu için en az dört tebliğci bilgisi gereklidir.";
     }
   }
 
@@ -204,6 +228,16 @@ export async function POST(request: Request) {
   const id = crypto.randomUUID();
 
   await ensureApplicationSchema(env.DB);
+  const enrichedNotes = [
+    payload.notes,
+    payload.orcid ? `ORCID: ${payload.orcid}` : "",
+    `Özet dili: ${payload.abstractLanguage}`,
+    `Anahtar kelimeler: ${payload.keywords}`,
+    `Sunumu gerçekleştirecek yazar: ${payload.presentingAuthor}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
   await env.DB.prepare(
     `INSERT INTO applications (
       id,
@@ -240,7 +274,7 @@ export async function POST(request: Request) {
       payload.abstractText,
       payload.publishedBefore,
       payload.speakers.length ? JSON.stringify(payload.speakers) : null,
-      payload.notes || null,
+      enrichedNotes || null,
     )
     .run();
 

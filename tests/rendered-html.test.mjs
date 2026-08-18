@@ -31,11 +31,11 @@ test("server-renders the symposium homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Uluslararası Yazma Mushaflar Sempozyumu/);
-  assert.match(html, /12-13 Kasım 2026/);
+  assert.match(html, /Uluslararası Türbeler Sempozyumu/);
+  assert.match(html, /1-3 Nisan 2027/);
   assert.match(html, /Bildiri Başvurusu Yap/);
   assert.match(html, /Sempozyum Tebliğ Çağrısı/);
-  assert.match(html, /Mushaf Kitâbeti/);
+  assert.match(html, /Kur&#x27;an ve Sünnet Perspektifinde Türbeler|Kur&#39;an ve Sünnet Perspektifinde Türbeler|Kur'an ve Sünnet Perspektifinde Türbeler/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 
@@ -51,11 +51,12 @@ test("keeps site assets and persistence configuration in place", async () => {
 
   assert.match(page, /RegistrationForm/);
   assert.match(layout, /generateMetadata/);
+  assert.match(layout, /Uluslararası Türbeler Sempozyumu/);
   assert.match(hostingConfig, /"d1": "DB"/);
   assert.match(migration, /CREATE TABLE `applications`/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await access(new URL("../public/og.png", import.meta.url));
-  await access(new URL("../public/hero-manuscript.png", import.meta.url));
+  await access(new URL("../public/hero-turbeler.png", import.meta.url));
   await assert.rejects(access(new URL("../app/_sites-preview", templateRoot)));
 });

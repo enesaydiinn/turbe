@@ -19,9 +19,9 @@ const crimson = Crimson_Text({
   weight: ["400", "600", "700"],
 });
 
-const siteTitle = "Uluslararası Yazma Mushaflar Sempozyumu";
+const siteTitle = "Uluslararası Türbeler Sempozyumu";
 const siteDescription =
-  "12-13 Kasım 2026 tarihinde İstanbul'da düzenlenecek Uluslararası Yazma Mushaflar Sempozyumu için tanıtım ve bildiri başvuru sitesi.";
+  "1-3 Nisan 2027 tarihinde İstanbul'da düzenlenecek Uluslararası Türbeler Sempozyumu için tanıtım ve bildiri başvuru sitesi.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
