@@ -14,6 +14,8 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Kur'an ve Sünnet Perspektifinde Türbeler/);
   assert.match(page, /TÜRÇEK/);
   assert.match(layout, /NEXT_PUBLIC_SITE_URL/);
+  assert.match(layout, /VERCEL_PROJECT_PRODUCTION_URL/);
+  assert.match(layout, /parseSiteUrl/);
   assert.match(layout, /Uluslararası Türbeler Sempozyumu/);
 });
 

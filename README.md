@@ -55,8 +55,11 @@ SUPABASE_SERVICE_ROLE_KEY
 NEXT_PUBLIC_SITE_URL
 ```
 
-`NEXT_PUBLIC_SITE_URL` değerini canlı Vercel domain'iyle güncelleyin. Vercel
-build komutu `npm run build`, geliştirme komutu `npm run dev` olarak ayarlı.
+`NEXT_PUBLIC_SITE_URL` değerini canlı Vercel domain'iyle güncelleyin; yalnızca
+`https://` bırakmayın, örnek olarak `https://turbe.vercel.app` gibi tam domain
+girin. Bu değer boş veya hatalı olursa uygulama Vercel'in kendi domain
+değerlerine, yerelde ise `http://localhost:3000` adresine düşer. Vercel build
+komutu `npm run build`, geliştirme komutu `npm run dev` olarak ayarlı.
 
 ## Komutlar
 

@@ -21,15 +21,34 @@ const crimson = Crimson_Text({
 const siteTitle = "Uluslararası Türbeler Sempozyumu";
 const siteDescription =
   "1-3 Nisan 2027 tarihinde İstanbul'da düzenlenecek Uluslararası Türbeler Sempozyumu için tanıtım ve bildiri başvuru sitesi.";
-const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const siteUrl = rawSiteUrl.startsWith("http")
-  ? rawSiteUrl
-  : `https://${rawSiteUrl}`;
+
+function parseSiteUrl(value: string | undefined) {
+  const trimmed = value?.trim();
+
+  if (!trimmed) {
+    return null;
+  }
+
+  const url = trimmed.startsWith("http") ? trimmed : `https://${trimmed}`;
+
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.hostname ? parsedUrl : null;
+  } catch {
+    return null;
+  }
+}
+
+const siteUrl =
+  parseSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
+  parseSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
+  parseSiteUrl(process.env.VERCEL_URL) ??
+  new URL("http://localhost:3000");
 
 export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrl,
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
