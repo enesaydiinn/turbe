@@ -61,7 +61,8 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const abstractText = stringValue(form, "abstractText");
     const wordCount = countWords(abstractText);
 
@@ -137,7 +138,7 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
         throw new Error(result.message ?? "Başvuru alınamadı.");
       }
 
-      event.currentTarget.reset();
+      formElement.reset();
       setAbstractWords(0);
       setStatus("success");
       setMessage("Başvurunuz alındı. Değerlendirme süreci için teşekkür ederiz.");
