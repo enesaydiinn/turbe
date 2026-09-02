@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { Crimson_Text, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -22,46 +21,40 @@ const crimson = Crimson_Text({
 const siteTitle = "Uluslararası Türbeler Sempozyumu";
 const siteDescription =
   "1-3 Nisan 2027 tarihinde İstanbul'da düzenlenecek Uluslararası Türbeler Sempozyumu için tanıtım ve bildiri başvuru sitesi.";
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = rawSiteUrl.startsWith("http")
+  ? rawSiteUrl
+  : `https://${rawSiteUrl}`;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
-  const metadataBase = new URL(`${protocol}://${host}`);
-
-  return {
+export const metadata: Metadata = {
+  title: siteTitle,
+  description: siteDescription,
+  metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
+  openGraph: {
     title: siteTitle,
     description: siteDescription,
-    metadataBase,
-    icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
-    },
-    openGraph: {
-      title: siteTitle,
-      description: siteDescription,
-      type: "website",
-      locale: "tr_TR",
-      images: [
-        {
-          url: "/og.png",
-          width: 1200,
-          height: 630,
-          alt: siteTitle,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: siteTitle,
-      description: siteDescription,
-      images: ["/og.png"],
-    },
-  };
-}
+    type: "website",
+    locale: "tr_TR",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: siteTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/og.png"],
+  },
+};
 
 export default function RootLayout({
   children,

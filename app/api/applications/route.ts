@@ -1,5 +1,3 @@
-import { env } from "cloudflare:workers";
-
 type Speaker = {
   fullName: string;
   institution: string;
@@ -30,6 +28,12 @@ type ApplicationPayload = {
   speakers: Speaker[];
 };
 
+type SupabaseApplication = {
+  id: string;
+};
+
+export const runtime = "nodejs";
+
 function text(value: unknown, maxLength = 1200) {
   if (typeof value !== "string") {
     return "";
@@ -43,6 +47,14 @@ function wordCount(value: string) {
     .trim()
     .split(/\s+/)
     .filter(Boolean).length;
+}
+
+function keywordList(value: string) {
+  return value
+    .split(",")
+    .map((keyword) => keyword.trim())
+    .filter(Boolean)
+    .slice(0, 5);
 }
 
 function normalizeSpeakers(value: unknown): Speaker[] {
@@ -131,12 +143,8 @@ function validatePayload(payload: ApplicationPayload) {
     return "Özet metni 150-300 kelime aralığında olmalıdır.";
   }
 
-  const keywordCount = payload.keywords
-    .split(",")
-    .map((keyword) => keyword.trim())
-    .filter(Boolean).length;
-
-  if (keywordCount < 3 || keywordCount > 5) {
+  const keywords = keywordList(payload.keywords);
+  if (keywords.length < 3 || keywords.length > 5) {
     return "Anahtar kelimeler 3-5 ifade arasında olmalıdır.";
   }
 
@@ -169,41 +177,26 @@ function validatePayload(payload: ApplicationPayload) {
   return "";
 }
 
-async function ensureApplicationSchema(db: D1Database) {
-  await db.batch([
-    db.prepare(`CREATE TABLE IF NOT EXISTS applications (
-      id TEXT PRIMARY KEY,
-      application_type TEXT NOT NULL,
-      status TEXT NOT NULL DEFAULT 'received',
-      full_name TEXT NOT NULL,
-      email TEXT NOT NULL,
-      phone TEXT NOT NULL,
-      country_city TEXT NOT NULL,
-      institution TEXT NOT NULL,
-      profession TEXT NOT NULL,
-      academic_title TEXT NOT NULL,
-      topic TEXT NOT NULL,
-      paper_title TEXT NOT NULL,
-      panel_title TEXT,
-      abstract_text TEXT NOT NULL,
-      published_before TEXT NOT NULL,
-      speakers_json TEXT,
-      notes TEXT,
-      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-    )`),
-    db.prepare(
-      "CREATE INDEX IF NOT EXISTS idx_applications_type ON applications (application_type)",
-    ),
-    db.prepare(
-      "CREATE INDEX IF NOT EXISTS idx_applications_created_at ON applications (created_at)",
-    ),
-  ]);
+function getSupabaseConfig() {
+  const url = process.env.SUPABASE_URL?.replace(/\/$/, "");
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !serviceRoleKey) {
+    return null;
+  }
+
+  return { serviceRoleKey, url };
 }
 
 export async function POST(request: Request) {
-  if (!env.DB) {
+  const supabase = getSupabaseConfig();
+
+  if (!supabase) {
     return Response.json(
-      { message: "Başvuru kayıt sistemi henüz hazır değil." },
+      {
+        message:
+          "Başvuru kayıt sistemi için Supabase ortam değişkenleri eksik.",
+      },
       { status: 503 },
     );
   }
@@ -225,58 +218,48 @@ export async function POST(request: Request) {
     return Response.json({ message: validationMessage }, { status: 400 });
   }
 
-  const id = crypto.randomUUID();
+  const response = await fetch(`${supabase.url}/rest/v1/applications`, {
+    method: "POST",
+    headers: {
+      apikey: supabase.serviceRoleKey,
+      Authorization: `Bearer ${supabase.serviceRoleKey}`,
+      "Content-Type": "application/json",
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify({
+      application_type: payload.applicationType,
+      full_name: payload.fullName,
+      email: payload.email,
+      phone: payload.phone,
+      country_city: payload.countryCity,
+      institution: payload.institution,
+      orcid: payload.orcid || null,
+      profession: payload.profession,
+      academic_title: payload.academicTitle,
+      topic: payload.topic,
+      paper_title: payload.paperTitle,
+      panel_title: payload.panelTitle || null,
+      presenting_author: payload.presentingAuthor,
+      abstract_language: payload.abstractLanguage,
+      keywords: keywordList(payload.keywords),
+      abstract_text: payload.abstractText,
+      published_before: payload.publishedBefore === "yes",
+      speakers: payload.speakers,
+      notes: payload.notes || null,
+      user_agent: request.headers.get("user-agent"),
+    }),
+  });
 
-  await ensureApplicationSchema(env.DB);
-  const enrichedNotes = [
-    payload.notes,
-    payload.orcid ? `ORCID: ${payload.orcid}` : "",
-    `Özet dili: ${payload.abstractLanguage}`,
-    `Anahtar kelimeler: ${payload.keywords}`,
-    `Sunumu gerçekleştirecek yazar: ${payload.presentingAuthor}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  if (!response.ok) {
+    const details = await response.text();
+    console.error("Supabase application insert failed", details);
+    return Response.json(
+      { message: "Başvuru kaydedilirken bir sorun oluştu." },
+      { status: 502 },
+    );
+  }
 
-  await env.DB.prepare(
-    `INSERT INTO applications (
-      id,
-      application_type,
-      full_name,
-      email,
-      phone,
-      country_city,
-      institution,
-      profession,
-      academic_title,
-      topic,
-      paper_title,
-      panel_title,
-      abstract_text,
-      published_before,
-      speakers_json,
-      notes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-  )
-    .bind(
-      id,
-      payload.applicationType,
-      payload.fullName,
-      payload.email,
-      payload.phone,
-      payload.countryCity,
-      payload.institution,
-      payload.profession,
-      payload.academicTitle,
-      payload.topic,
-      payload.paperTitle,
-      payload.panelTitle || null,
-      payload.abstractText,
-      payload.publishedBefore,
-      payload.speakers.length ? JSON.stringify(payload.speakers) : null,
-      enrichedNotes || null,
-    )
-    .run();
+  const rows = (await response.json()) as SupabaseApplication[];
 
-  return Response.json({ id, ok: true });
+  return Response.json({ id: rows[0]?.id ?? null, ok: true });
 }
