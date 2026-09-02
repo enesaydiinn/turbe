@@ -191,10 +191,10 @@ export default function Home() {
             Uluslararası Türbeler Sempozyumu-I, Türbeler-Çeşmeler Taşınır ve
             Taşınmaz Kültür Varlıklarını Koruma ve Yaşatma Derneği (TÜRÇEK)
             tarafından, Fatih Belediyesi ev sahipliğinde ve paydaş kurumların
-            katkılarıyla 1-3 Nisan 2027 tarihlerinde İstanbul'da düzenlenecektir.
+            katkılarıyla 1-3 Nisan 2027 tarihlerinde İstanbul&apos;da düzenlenecektir.
           </p>
           <p>
-            "Geçmişten Geleceğe Türbe Kültürü" ana temasıyla düzenlenen
+            &quot;Geçmişten Geleceğe Türbe Kültürü&quot; ana temasıyla düzenlenen
             sempozyum; dini ilimler, tarih, sanat tarihi, mimarlık, tasavvuf,
             vakıf tarihi, kültürel miras, sosyoloji, psikoloji, antropoloji,
             hukuk, turizm ve dijital beşeri bilimler alanlarından araştırmacıları

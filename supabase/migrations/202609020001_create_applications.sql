@@ -22,6 +22,9 @@ create table if not exists public.applications (
   published_before boolean not null default false,
   speakers jsonb not null default '[]'::jsonb,
   notes text,
+  review_notes text,
+  reviewed_by text,
+  reviewed_at timestamptz,
   user_agent text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
@@ -43,6 +46,9 @@ create index if not exists idx_applications_created_at
 
 create index if not exists idx_applications_application_type
   on public.applications (application_type);
+
+create index if not exists idx_applications_status
+  on public.applications (status);
 
 create index if not exists idx_applications_topic
   on public.applications (topic);
@@ -74,3 +80,6 @@ comment on table public.applications is
 
 comment on column public.applications.speakers is
   'Panel başvuruları için tebliğci ad, kurum, e-posta ve tebliğ başlığı bilgileri.';
+
+comment on column public.applications.review_notes is
+  'Admin panelinde tutulan değerlendirme notları.';

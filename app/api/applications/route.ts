@@ -1,3 +1,5 @@
+import { insertApplication, SupabaseConfigError } from "@/app/lib/supabase";
+
 type Speaker = {
   fullName: string;
   institution: string;
@@ -26,10 +28,6 @@ type ApplicationPayload = {
   notes: string;
   consent: boolean;
   speakers: Speaker[];
-};
-
-type SupabaseApplication = {
-  id: string;
 };
 
 export const runtime = "nodejs";
@@ -177,47 +175,7 @@ function validatePayload(payload: ApplicationPayload) {
   return "";
 }
 
-function getSupabaseConfig() {
-  const url = (
-    process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL
-  )?.replace(/\/$/, "");
-  const adminKey =
-    process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  if (!url || !adminKey) {
-    return null;
-  }
-
-  return { adminKey, url };
-}
-
-function supabaseHeaders(adminKey: string) {
-  const headers: Record<string, string> = {
-    apikey: adminKey,
-    "Content-Type": "application/json",
-    Prefer: "return=representation",
-  };
-
-  if (adminKey.startsWith("eyJ")) {
-    headers.Authorization = `Bearer ${adminKey}`;
-  }
-
-  return headers;
-}
-
 export async function POST(request: Request) {
-  const supabase = getSupabaseConfig();
-
-  if (!supabase) {
-    return Response.json(
-      {
-        message:
-          "Başvuru kayıt sistemi için Supabase ortam değişkenleri eksik.",
-      },
-      { status: 503 },
-    );
-  }
-
   let body: unknown;
   try {
     body = await request.json();
@@ -235,10 +193,8 @@ export async function POST(request: Request) {
     return Response.json({ message: validationMessage }, { status: 400 });
   }
 
-  const response = await fetch(`${supabase.url}/rest/v1/applications`, {
-    method: "POST",
-    headers: supabaseHeaders(supabase.adminKey),
-    body: JSON.stringify({
+  try {
+    const rows = await insertApplication({
       application_type: payload.applicationType,
       full_name: payload.fullName,
       email: payload.email,
@@ -259,19 +215,24 @@ export async function POST(request: Request) {
       speakers: payload.speakers,
       notes: payload.notes || null,
       user_agent: request.headers.get("user-agent"),
-    }),
-  });
+    });
 
-  if (!response.ok) {
-    const details = await response.text();
-    console.error("Supabase application insert failed", details);
+    return Response.json({ id: rows[0]?.id ?? null, ok: true });
+  } catch (error) {
+    if (error instanceof SupabaseConfigError) {
+      return Response.json(
+        {
+          message:
+            "Başvuru kayıt sistemi için Supabase ortam değişkenleri eksik.",
+        },
+        { status: 503 },
+      );
+    }
+
+    console.error("Supabase application insert failed", error);
     return Response.json(
       { message: "Başvuru kaydedilirken bir sorun oluştu." },
       { status: 502 },
     );
   }
-
-  const rows = (await response.json()) as SupabaseApplication[];
-
-  return Response.json({ id: rows[0]?.id ?? null, ok: true });
 }
