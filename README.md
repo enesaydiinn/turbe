@@ -15,14 +15,19 @@ npm run dev
 `.env.local` içinde şu değerleri doldurun:
 
 ```bash
-SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_URL=https://fsxyhalmihldguiwxydg.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_eQ29YFpV2dOSOb5abmvizQ_vf-pFoc8
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+# SUPABASE_SECRET_KEY=sb_secret_your-secret-key
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY` yalnızca sunucu tarafındaki başvuru API route'unda
-kullanılır. Bu değeri istemci tarafında veya `NEXT_PUBLIC_` önekiyle
-tanımlamayın.
+`SUPABASE_SERVICE_ROLE_KEY` veya yeni format kullanıyorsanız
+`SUPABASE_SECRET_KEY` yalnızca sunucu tarafındaki başvuru API route'unda
+kullanılır. Bu değerleri istemci tarafında veya `NEXT_PUBLIC_` önekiyle
+tanımlamayın. `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` tarayıcı tarafında
+kullanılabilir public anahtardır; başvuru kayıtları güvenlik için server API
+üzerinden admin anahtarıyla yazılır.
 
 ## Supabase Migration
 
@@ -43,8 +48,10 @@ yazdığı için ek public insert policy gerektirmez.
 Vercel projesinde aşağıdaki ortam değişkenlerini tanımlayın:
 
 ```bash
-SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 SUPABASE_SERVICE_ROLE_KEY
+# veya yeni anahtar yapısına geçtiyseniz SUPABASE_SECRET_KEY
 NEXT_PUBLIC_SITE_URL
 ```
 

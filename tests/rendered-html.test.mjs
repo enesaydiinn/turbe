@@ -33,15 +33,20 @@ test("is configured for Vercel and Supabase", async () => {
       readFile(new URL("../vercel.json", import.meta.url), "utf8"),
     ]);
 
-  assert.match(route, /SUPABASE_URL/);
+  assert.match(route, /NEXT_PUBLIC_SUPABASE_URL/);
   assert.match(route, /SUPABASE_SERVICE_ROLE_KEY/);
+  assert.match(route, /SUPABASE_SECRET_KEY/);
+  assert.match(route, /adminKey\.startsWith\("eyJ"\)/);
   assert.match(route, /\/rest\/v1\/applications/);
   assert.doesNotMatch(route, /cloudflare:workers|D1Database/);
   assert.match(migration, /create table if not exists public\.applications/);
   assert.match(migration, /jsonb_array_length\(speakers\) >= 4/);
   assert.match(migration, /array_length\(keywords, 1\) between 3 and 5/);
   assert.match(packageJson, /"build": "next build"/);
+  assert.match(envExample, /NEXT_PUBLIC_SUPABASE_URL/);
+  assert.match(envExample, /NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY/);
   assert.match(envExample, /SUPABASE_SERVICE_ROLE_KEY/);
+  assert.match(envExample, /SUPABASE_SECRET_KEY/);
   assert.match(vercelConfig, /"framework": "nextjs"/);
 
   await access(new URL("../public/og.png", import.meta.url));

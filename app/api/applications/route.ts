@@ -178,14 +178,31 @@ function validatePayload(payload: ApplicationPayload) {
 }
 
 function getSupabaseConfig() {
-  const url = process.env.SUPABASE_URL?.replace(/\/$/, "");
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = (
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL
+  )?.replace(/\/$/, "");
+  const adminKey =
+    process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-  if (!url || !serviceRoleKey) {
+  if (!url || !adminKey) {
     return null;
   }
 
-  return { serviceRoleKey, url };
+  return { adminKey, url };
+}
+
+function supabaseHeaders(adminKey: string) {
+  const headers: Record<string, string> = {
+    apikey: adminKey,
+    "Content-Type": "application/json",
+    Prefer: "return=representation",
+  };
+
+  if (adminKey.startsWith("eyJ")) {
+    headers.Authorization = `Bearer ${adminKey}`;
+  }
+
+  return headers;
 }
 
 export async function POST(request: Request) {
@@ -220,12 +237,7 @@ export async function POST(request: Request) {
 
   const response = await fetch(`${supabase.url}/rest/v1/applications`, {
     method: "POST",
-    headers: {
-      apikey: supabase.serviceRoleKey,
-      Authorization: `Bearer ${supabase.serviceRoleKey}`,
-      "Content-Type": "application/json",
-      Prefer: "return=representation",
-    },
+    headers: supabaseHeaders(supabase.adminKey),
     body: JSON.stringify({
       application_type: payload.applicationType,
       full_name: payload.fullName,
