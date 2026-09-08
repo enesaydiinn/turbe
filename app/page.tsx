@@ -362,7 +362,7 @@ export default function Home() {
             </span>
           </p>
           <p className="hero-date">
-            31 Mart - 1 Nisan 2027
+            <span>31 Mart - 1 Nisan 2027</span>
             <span>International Symposium on Mausoleums-I</span>
             <span dir="rtl" lang="ar">المؤتمر الدولي الأول للأضرحة الإسلامية</span>
           </p>

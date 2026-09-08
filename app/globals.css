@@ -250,10 +250,21 @@ img {
   display: grid;
   font-size: 1rem;
   gap: 6px;
+  justify-items: start;
   margin: 26px 0 0;
 }
 
+.hero-date span {
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+}
+
 .hero-date span:first-child {
+  color: rgba(255, 248, 232, 0.62);
+}
+
+.hero-date span:nth-child(2) {
   color: rgba(255, 248, 232, 0.72);
   font-family: var(--font-crimson), Georgia, serif;
   font-size: 1.3rem;
@@ -261,8 +272,10 @@ img {
 
 .hero-date span:last-child {
   color: rgba(182, 138, 74, 0.76);
+  direction: rtl;
   font-family: var(--font-crimson), Georgia, serif;
   font-size: 1.4rem;
+  text-align: right;
 }
 
 .hero-actions {
@@ -1449,7 +1462,7 @@ section,
     margin-top: 22px;
   }
 
-  .hero-date span:first-child,
+  .hero-date span:nth-child(2),
   .hero-date span:last-child {
     font-size: 1.08rem;
   }
