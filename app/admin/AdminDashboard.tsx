@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type {
@@ -288,7 +289,13 @@ export function AdminDashboard({
     <main className="admin-shell">
       <header className="admin-header">
         <Link className="admin-brand" href="/">
-          <span>TÇ</span>
+          <Image
+            alt="TÜRÇEK"
+            className="admin-brand-logo"
+            height={68}
+            src="/turcek-logo.png"
+            width={72}
+          />
           <strong>TÜRÇEK Admin</strong>
         </Link>
         <div className="admin-session">

@@ -319,11 +319,13 @@ export default function Home() {
     <main className="site-shell">
       <header className="site-header" aria-label="Ana gezinme">
         <a className="brand" href="#top" aria-label="Ana sayfaya dön">
-          <span className="brand-mark">TÇ</span>
-          <span>
-            <strong>TÜRÇEK</strong>
-            <small>Türbe Kültürü</small>
-          </span>
+          <Image
+            alt="TÜRÇEK"
+            className="brand-logo"
+            height={68}
+            src="/turcek-logo.png"
+            width={72}
+          />
         </a>
         <nav>
           <a href="#cagri">Çağrı</a>

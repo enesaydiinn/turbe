@@ -16,6 +16,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Özet Kılavuzu/);
   assert.match(page, /Sekreterya/);
   assert.match(page, /TÜRÇEK/);
+  assert.match(page, /turcek-logo\.png/);
   assert.match(layout, /NEXT_PUBLIC_SITE_URL/);
   assert.match(layout, /VERCEL_PROJECT_PRODUCTION_URL/);
   assert.match(layout, /parseSiteUrl/);
@@ -77,12 +78,17 @@ test("is configured for Vercel and Supabase", async () => {
 
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/hero-turbeler.png", import.meta.url));
+  await access(new URL("../public/turcek-logo.png", import.meta.url));
 });
 
 test("includes protected admin review pages", async () => {
-  const [adminPage, loginPage, authLib, supabaseLib, updateRoute] =
+  const [adminPage, adminDashboard, loginPage, authLib, supabaseLib, updateRoute] =
     await Promise.all([
       readFile(new URL("../app/admin/page.tsx", import.meta.url), "utf8"),
+      readFile(
+        new URL("../app/admin/AdminDashboard.tsx", import.meta.url),
+        "utf8",
+      ),
       readFile(new URL("../app/admin/login/page.tsx", import.meta.url), "utf8"),
       readFile(new URL("../app/lib/admin-auth.ts", import.meta.url), "utf8"),
       readFile(new URL("../app/lib/supabase.ts", import.meta.url), "utf8"),
@@ -94,6 +100,7 @@ test("includes protected admin review pages", async () => {
 
   assert.match(adminPage, /getAdminSession/);
   assert.match(adminPage, /fetchApplications/);
+  assert.match(adminDashboard, /turcek-logo\.png/);
   assert.match(loginPage, /LoginForm/);
   assert.match(authLib, /ADMIN_COOKIE_NAME/);
   assert.match(authLib, /timingSafeEqual/);

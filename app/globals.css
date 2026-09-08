@@ -80,18 +80,11 @@ img {
   min-width: max-content;
 }
 
-.brand-mark {
-  align-items: center;
-  background: var(--teal-dark);
-  border: 1px solid rgba(182, 138, 74, 0.52);
-  color: #f7dfaf;
-  display: inline-flex;
-  font-family: var(--font-crimson), Georgia, serif;
-  font-size: 1rem;
-  font-weight: 700;
-  height: 42px;
-  justify-content: center;
-  width: 42px;
+.brand-logo {
+  display: block;
+  height: 58px;
+  object-fit: contain;
+  width: auto;
 }
 
 .brand strong,
@@ -837,16 +830,11 @@ section,
   gap: 12px;
 }
 
-.admin-brand span {
-  align-items: center;
-  background: var(--teal-dark);
-  color: #f7dfaf;
-  display: inline-flex;
-  font-family: var(--font-crimson), Georgia, serif;
-  font-weight: 700;
-  height: 40px;
-  justify-content: center;
-  width: 40px;
+.admin-brand-logo {
+  display: block;
+  height: 46px;
+  object-fit: contain;
+  width: auto;
 }
 
 .admin-brand strong,
