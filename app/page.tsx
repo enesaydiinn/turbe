@@ -254,6 +254,29 @@ const travelRules = [
   "Sempozyum yüz yüze gerçekleştirilecek olup çevrim içi sunum veya uzaktan katılım imkânı bulunmamaktadır.",
 ];
 
+const partnerLogos = [
+  {
+    name: "Fatih Belediye Başkanlığı",
+    src: "/partners/fatih-belediyesi.png",
+  },
+  {
+    name: "T.C. İstanbul Valiliği",
+    src: "/partners/istanbul-valiligi.png",
+  },
+  {
+    name: "İstanbul İl Kültür ve Turizm Müdürlüğü",
+    src: "/partners/istanbul-il-kultur-turizm.jpeg",
+  },
+  {
+    name: "Türkiye Yazma Eserler Kurumu Başkanlığı",
+    src: "/partners/turkiye-yazma-eserler.png",
+  },
+  {
+    name: "Kocaeli Büyükşehir Belediyesi",
+    src: "/partners/kocaeli-buyuksehir.png",
+  },
+];
+
 const faqs = [
   [
     "Sempozyum nerede gerçekleştirilecektir?",
@@ -332,6 +355,7 @@ export default function Home() {
           <a href="#cagri">Tebliğ Çağrısı</a>
           <a href="#konular">Konu Başlıkları</a>
           <a href="#kurullar">Kurullar</a>
+          <a href="#paydaslar">Paydaşlar</a>
           <a href="#bilgiler">Sempozyum Bilgileri</a>
           <a href="#tarihler">Tarihler</a>
           <a href="#basvuru">Başvurular</a>
@@ -584,6 +608,42 @@ export default function Home() {
           </p>
         </div>
         <RegistrationForm topics={topicTitles} />
+      </section>
+
+      <section
+        className="partner-section"
+        aria-labelledby="partner-heading"
+        id="paydaslar"
+      >
+        <div className="section-heading partner-heading">
+          <p className="eyebrow">Paydaş Kurumlar</p>
+          <h2 id="partner-heading">İş birliği yapılan kurumlar</h2>
+        </div>
+        <div className="partner-marquee" aria-label="Paydaş kurum logoları">
+          <div className="partner-track">
+            {[0, 1].map((group) => (
+              <div
+                aria-hidden={group === 1}
+                className="partner-group"
+                key={group}
+              >
+                {partnerLogos.map((partner) => (
+                  <div
+                    className="partner-logo-card"
+                    key={`${group}-${partner.name}`}
+                  >
+                    <Image
+                      alt={partner.name}
+                      height={130}
+                      src={partner.src}
+                      width={220}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <footer className="site-footer" id="iletisim">

@@ -20,6 +20,9 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Sekreterya/);
   assert.match(page, /TÜRÇEK/);
   assert.match(page, /turcek-logo\.png/);
+  assert.match(page, /İş birliği yapılan kurumlar/);
+  assert.match(page, /Fatih Belediye Başkanlığı/);
+  assert.match(page, /Kocaeli Büyükşehir Belediyesi/);
   assert.match(page, /info@turbeler\.org\.tr/);
   assert.match(layout, /NEXT_PUBLIC_SITE_URL/);
   assert.match(layout, /VERCEL_PROJECT_PRODUCTION_URL/);
@@ -85,6 +88,15 @@ test("is configured for Vercel and Supabase", async () => {
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/hero-turbeler.png", import.meta.url));
   await access(new URL("../public/turcek-logo.png", import.meta.url));
+  await access(new URL("../public/partners/fatih-belediyesi.png", import.meta.url));
+  await access(new URL("../public/partners/istanbul-valiligi.png", import.meta.url));
+  await access(
+    new URL("../public/partners/istanbul-il-kultur-turizm.jpeg", import.meta.url),
+  );
+  await access(
+    new URL("../public/partners/turkiye-yazma-eserler.png", import.meta.url),
+  );
+  await access(new URL("../public/partners/kocaeli-buyuksehir.png", import.meta.url));
 });
 
 test("includes protected admin review pages", async () => {

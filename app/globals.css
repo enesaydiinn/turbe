@@ -667,6 +667,91 @@ section,
   opacity: 0.78;
 }
 
+.partner-section {
+  background:
+    linear-gradient(180deg, #173634 0%, var(--paper) 18%, #ece6d8 100%);
+  overflow: hidden;
+  padding-bottom: 76px;
+  padding-top: 76px;
+}
+
+.partner-heading {
+  margin-bottom: 30px;
+}
+
+.partner-marquee {
+  margin-left: min(-24px, calc((1180px - 100vw) / 2));
+  margin-right: min(-24px, calc((1180px - 100vw) / 2));
+  overflow: hidden;
+  padding: 10px 0 18px;
+}
+
+.partner-track {
+  animation: partner-scroll 34s linear infinite;
+  display: flex;
+  gap: 18px;
+  width: max-content;
+}
+
+.partner-marquee:hover .partner-track {
+  animation-play-state: paused;
+}
+
+.partner-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 18px;
+}
+
+.partner-logo-card {
+  align-items: center;
+  background: rgba(251, 247, 238, 0.94);
+  border: 1px solid rgba(29, 38, 37, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(29, 38, 37, 0.1);
+  display: flex;
+  flex: 0 0 238px;
+  height: 126px;
+  justify-content: center;
+  padding: 22px;
+}
+
+.partner-logo-card img {
+  height: auto;
+  max-height: 82px;
+  max-width: 188px;
+  object-fit: contain;
+  width: auto;
+}
+
+@keyframes partner-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 9px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee {
+    overflow: visible;
+  }
+
+  .partner-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+
+  .partner-group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 .application-form {
   background: var(--paper);
   border: 1px solid rgba(182, 138, 74, 0.34);
@@ -1377,6 +1462,10 @@ section,
     grid-template-columns: repeat(5, minmax(68px, 1fr));
   }
 
+  .partner-logo-card {
+    flex-basis: 220px;
+  }
+
   .intro-band,
   .site-footer {
     grid-template-columns: 1fr;
@@ -1515,6 +1604,27 @@ section,
   .hero-facts {
     gap: 10px;
     margin-top: 30px;
+  }
+
+  .partner-section {
+    padding-bottom: 56px;
+    padding-top: 58px;
+  }
+
+  .partner-track,
+  .partner-group {
+    gap: 12px;
+  }
+
+  .partner-logo-card {
+    flex-basis: 184px;
+    height: 104px;
+    padding: 16px;
+  }
+
+  .partner-logo-card img {
+    max-height: 70px;
+    max-width: 146px;
   }
 
   section,
