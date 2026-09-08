@@ -17,6 +17,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Sekreterya/);
   assert.match(page, /TÜRÇEK/);
   assert.match(page, /turcek-logo\.png/);
+  assert.match(page, /info@turbeler\.org\.tr/);
   assert.match(layout, /NEXT_PUBLIC_SITE_URL/);
   assert.match(layout, /VERCEL_PROJECT_PRODUCTION_URL/);
   assert.match(layout, /parseSiteUrl/);

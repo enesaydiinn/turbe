@@ -573,7 +573,7 @@ export default function Home() {
           </p>
         </div>
         <address>
-          <a href="mailto:info@turcek.org">info@turcek.org</a>
+          <a href="mailto:info@turbeler.org.tr">info@turbeler.org.tr</a>
           <span>İstanbul / Türkiye</span>
           <span>Fatih Belediyesi ev sahipliğinde yüz yüze gerçekleştirilecektir.</span>
         </address>
