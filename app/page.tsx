@@ -1,124 +1,323 @@
+import Image from "next/image";
 import { RegistrationForm } from "./components/RegistrationForm";
 
 const topicGroups = [
   {
-    title: "Kur'an ve Sünnet Perspektifinde Türbeler",
-    items: ["Kabir ve ahiret tasavvuru", "Kabir ziyareti rivayetleri", "Erken dönem türbe geleneği"],
+    title: "Kur’ân ve Sünnet Perspektifinde Türbeler",
+    items: [
+      "Kur’ân-ı Kerîm’de kabir, ölüm ve âhiret tasavvuru",
+      "Kur’ân perspektifinde salihlerin hatırasının muhafazası",
+      "Hadis literatüründe kabir ve türbe ziyareti",
+      "Kabir ziyareti rivayetlerinin tarihî gelişimi",
+      "Sahabe ve Tâbiîn döneminde kabir ziyareti",
+      "Erken dönem İslâm toplumunda türbe geleneğinin teşekkülü",
+    ],
   },
   {
-    title: "İslam Tarihi, Medeniyeti ve Türbe Geleneği",
-    items: ["Türk-İslam medeniyetinde türbe kültürü", "Selçuklu, Beylikler ve Osmanlı türbeleri", "Vakıf medeniyeti"],
+    title: "İslâm Tarihi, Medeniyeti ve Türbe Geleneği",
+    items: [
+      "İslâm tarihinde türbe geleneğinin ortaya çıkışı",
+      "Türk-İslâm medeniyetinde türbe kültürü",
+      "Selçuklu, Beylikler ve Osmanlı döneminde türbeler",
+      "Osmanlı’da türbeler ve ziyaret kültürü",
+      "Anadolu’da evliya türbeleri",
+      "Türbeler ve vakıf medeniyeti",
+      "Türbelerin hukukî ve idarî tarihi",
+    ],
   },
   {
     title: "Fıkıh Perspektifinde Türbeler",
-    items: ["Türbe ziyaretinin hükmü", "Dua, adak ve nezir uygulamaları", "Bid'at tartışmaları"],
+    items: [
+      "Mezheplere göre türbe ziyaretinin hükmü",
+      "Kabir üzerine yapı inşa etmenin fıkhî boyutu",
+      "Türbelerde dua ve ibadet",
+      "Adak, nezir ve kurban uygulamaları",
+      "Kadınların kabir ziyareti",
+      "Kabir başında Kur’ân tilâveti",
+      "Bid‘at tartışmaları",
+    ],
   },
   {
-    title: "Kelam, Akaid ve İslam Düşüncesinde Türbeler",
-    items: ["Tevhid ve şirk tartışmaları", "Tevessül ve teberrük", "Ehl-i Sünnet geleneği"],
+    title: "Kelâm, Akaid ve İslâm Düşüncesinde Türbeler",
+    items: [
+      "Tevhid, şirk ve türbe tartışmaları",
+      "Tevessül",
+      "Teberrük",
+      "Şefaat anlayışı",
+      "Velâyet ve keramet",
+      "Selefî yaklaşımlar",
+      "Ehl-i Sünnet geleneğinde türbe anlayışı",
+      "Şia’da türbe kültürü",
+    ],
   },
   {
     title: "Tasavvuf ve Türbe Kültürü",
-    items: ["Tekke, zaviye ve türbeler", "Evliya kültürü", "Manevi eğitim ve ziyaret"],
+    items: [
+      "Tasavvuf geleneğinde türbeler",
+      "Tekke, zaviye ve türbeler",
+      "Evliya kültü",
+      "Manevî eğitim",
+      "Tasavvuf literatüründe kabir ve ziyaret",
+    ],
   },
   {
     title: "Sanat Tarihi, Mimarlık ve Türbeler",
-    items: ["Selçuklu ve Osmanlı türbe mimarisi", "Kitabeler, çini ve kalemişi", "Restorasyon ve koruma"],
+    items: [
+      "İslam tarihinde türbelerin ortaya çıkışı",
+      "Selçuklu türbe mimarisi",
+      "Osmanlı türbe mimarisi",
+      "Türbe kitabeleri",
+      "Çini ve kalemişi",
+      "Türbelerde hat",
+      "Hazireler ve mezar taşları",
+      "Türbelerde restorasyon ve koruma teknikleri",
+    ],
   },
   {
     title: "Türbeler ve Kültürel Miras",
-    items: ["Dijital belgeleme", "Envanter çalışmaları", "Kültürel miras yönetimi"],
+    items: [
+      "Türbelerin korunması",
+      "UNESCO Dünya Mirası",
+      "Dijital belgeleme",
+      "Envanter çalışmaları",
+      "Vakıf eserleri",
+      "Kültürel miras yönetimi",
+    ],
   },
   {
-    title: "Sosyoloji, Psikoloji ve Antropoloji",
-    items: ["Halk dindarlığı", "Toplumsal hafıza", "Türbe ritüelleri ve menkıbeler"],
+    title: "Sosyoloji, Psikoloji ve Antropoloji Perspektifinden Türbeler",
+    items: [
+      "İnanç sosyolojisi",
+      "Halk dindarlığı",
+      "Kutsal mekân algısı",
+      "Toplumsal hafıza",
+      "Manevî iyileşme",
+      "Psikolojik boyut",
+      "Yerel inanç pratikleri",
+      "Türbe ritüelleri ve menkıbeler",
+      "Kültürel bellek",
+    ],
   },
   {
     title: "Türbeler, Şehir ve Medeniyet",
-    items: ["Şehir kimliği", "Külliye ve türbe ilişkisi", "Kent hafızası"],
+    items: [
+      "Türbeler ve şehir kimliği",
+      "Türbelerin şehirleşmeye etkisi",
+      "Külliye ve türbe ilişkisi",
+      "Tarihî çevre",
+      "Hazire kültürü",
+      "Kent hafızası",
+    ],
   },
   {
     title: "İnanç Turizmi ve Türbeler",
-    items: ["Kültür rotaları", "Ziyaretçi deneyimi", "Sürdürülebilir turizm"],
+    items: [
+      "Türbe turizmi",
+      "Ziyaret ekonomisi",
+      "Kültür rotaları",
+      "Sürdürülebilir turizm",
+      "Ziyaretçi deneyimi",
+      "Türbelerin tanıtımı",
+    ],
   },
   {
     title: "Güncel Tartışmalar ve Dijital Çağda Türbeler",
-    items: ["Dijital türbe envanterleri", "Sanal ziyaretler", "Yapay zeka uygulamaları"],
+    items: [
+      "Dijital türbe envanterleri",
+      "Sanal türbe ziyaretleri",
+      "Sosyal medya ve türbeler",
+      "Yapay zekâ uygulamaları",
+      "Modernleşme",
+      "Sekülerleşme",
+      "Türbelerin ticarileşmesi",
+      "Dijital beşerî bilimler",
+    ],
   },
   {
     title: "Türbeler Üzerine Yeni Yaklaşımlar",
-    items: ["Karşılaştırmalı araştırmalar", "Arşiv belgeleri", "Seyahatnameler ve menakıbnameler"],
+    items: [
+      "Disiplinlerarası çalışmalar",
+      "Karşılaştırmalı türbe araştırmaları",
+      "Yeni metodolojiler",
+      "Arşiv belgeleri",
+      "Yazma eserlerde türbeler",
+      "Seyahatnâmelerde türbeler",
+      "Biyografi ve menâkıbnâmelerde türbe kültürü",
+      "Türbe araştırmalarında yeni perspektifler",
+    ],
   },
+];
+
+const callParagraphs = [
+  "İslâm medeniyetinin dinî, tarihî, mimarî ve kültürel mirasının en önemli unsurlarından biri olan türbeler, asırlar boyunca yalnızca defin mekânı olmanın ötesinde; inanç, ilim, sanat, şehirleşme ve toplumsal hafızanın şekillenmesinde belirleyici rol üstlenmiş müstesna yapılardır.",
+  "Türbeler; mimarî özellikleri, kitabeleri, hazireleri, vakfiyeleri, etraflarında teşekkül eden ilmî ve tasavvufî gelenekleri, ziyaret kültürü ve zengin kültürel birikimiyle farklı disiplinlerin ortak araştırma alanını oluşturmaktadır.",
+  "Bu ihtiyaçtan hareketle, Türbeler-Çeşmeler Taşınır ve Taşınmaz Kültür Varlıklarını Koruma ve Yaşatma Derneği (TÜRÇEK) tarafından, Fatih Belediyesi ev sahipliğinde; İstanbul Valiliği, İstanbul İl Kültür ve Turizm Müdürlüğü, Türkiye Yazma Eserler Kurumu Başkanlığı, Kocaeli Büyükşehir Belediyesi ve diğer paydaş kurumların katkılarıyla 31 Mart - 1 Nisan 2027 tarihlerinde İstanbul’da I. Uluslararası Türbeler Sempozyumu düzenlenecektir.",
+  "“Geçmişten Geleceğe Türbe Kültürü” ana temasıyla gerçekleştirilecek sempozyum, türbe araştırmalarına yeni perspektifler kazandırmayı ve disiplinler arası akademik iş birliğini güçlendirmeyi amaçlamaktadır. Bilim Kurulu tarafından kabul edilen bildiriler, sempozyumda sözlü olarak sunulduktan sonra hakem ve editöryal değerlendirme süreçlerinin tamamlanmasını müteakip sempozyum bildiri kitabında yayımlanacaktır.",
+  "Türbe araştırmalarına katkı sağlayacak özgün çalışmalarınızla Uluslararası Türbeler Sempozyumu’na iştirak etmenizden memnuniyet duyacağız.",
 ];
 
 const committeeGroups = [
   {
-    title: "Sempozyum Yönetimi",
-    names: ["Ahmet Emre Bilgili", "Osman Gökmen"],
+    title: "Sempozyum Yönetimi / إدارة الملتقى / Symposium Management",
+    names: ["Prof. Dr. Ahmet Emre Bilgili", "Dr. Osman Gökmen"],
   },
   {
-    title: "Onur Kurulu",
-    names: ["Coşkun Yılmaz", "Cengiz Tomar"],
-  },
-  {
-    title: "Düzenleme Kurulu",
+    title: "Düzenleme Kurulu / لجنة التنظیم / Organizing Committee",
     names: [
+      "Cengiz Tomar",
+      "Coşkun Yılmaz",
+      "Hüseyin Keskin",
       "Ahmet Emre Bilgili",
       "Hayri Baraçlı",
-      "Ergün Turan",
-      "Hüseyin Keskin",
+      "Mehmet Ergün Turan",
+      "Hayrullah Çelebi",
+      "Ekrem Aytar",
+      "Mehmet Güney",
+      "Osman Kaymak",
       "Süleyman Sarpken",
       "Çetin Şimdi",
       "Osman Gökmen",
     ],
   },
   {
-    title: "Bilim Kurulu",
+    title: "Bilim Kurulu / اللجنة العلمیة / Scientific Committee",
     names: [
       "Hakkı Önkal",
+      "Cengiz Tomar",
       "Ahmet Vefa Çobanoğlu",
+      "Ahmet Emre Bilgili",
+      "Ahmet Sait Açıkgözoğlu",
       "Selçuk Mülayim",
-      "Salih Kuçur",
+      "Sadi S. Kucur",
       "Suphi Saatçi",
-      "Aziz Doğan",
+      "Aziz Doğanay",
       "Abdülhamit Tüfekçioğlu",
       "Halil İbrahim Düzenli",
       "Çiçek Derman",
       "Hilal Kazan",
+      "Fatma Nalan Türkmen",
       "Mehmet İpşirli",
       "Mustafa Uzun",
       "Necdet Subaşı",
       "Ali Akben",
       "Cengiz Tomar",
+      "Atilla Arkan",
+      "Azmi Özcan",
+      "Hayati Develi",
+      "Necdet Yılmaz",
+      "Halil Ekşi",
+      "Hatice Kelpetin Arpaguş",
+      "Abdurrahman Aliy",
+      "Mahmut Erol Kılıç",
+      "Osman Gökmen",
+      "Abdullah Hikmet Atan",
+      "Mustafa İsen",
+      "Murteza Bedir",
+      "Mustafa Gündüz",
     ],
+  },
+  {
+    title: "Sekreterya / الأمانة العامة / Secretariat",
+    names: ["Osman Gökmen"],
   },
 ];
 
 const importantDates = [
   ["30 Kasım 2026", "Bildiri özeti son gönderim tarihi"],
   ["21 Aralık 2026", "Kabul edilen bildirilerin ilanı"],
-  ["15 Ocak 2027", "Sempozyum programının ilanı"],
+  ["1 Mart 2027", "Sempozyum programının ilanı"],
   ["15 Şubat 2027", "Tam metinlerin son gönderim tarihi"],
-  ["1-3 Nisan 2027", "Uluslararası Türbeler Sempozyumu"],
+  ["31 Mart - 1 Nisan 2027", "Uluslararası Türbeler Sempozyumu"],
 ];
 
 const participationRules = [
-  "Başvurular yalnızca çevrim içi başvuru formu üzerinden alınacaktır.",
-  "Bildiri başvuruları bireysel bildiri veya panel önerisi şeklinde kabul edilir.",
-  "Panel önerileri en az dört bildiriden oluşmalı ve ortak bir panel başlığı taşımalıdır.",
+  "Başvurular, sempozyumun resmî internet sitesindeki çevrim içi başvuru formu doldurularak gerçekleştirilecektir.",
+  "Bildiri başvuruları bireysel bildiri veya panel önerisi şeklinde kabul edilecektir.",
+  "Panel önerileri en az dört bildiriden oluşmalıdır. Ortak panel başlığı zorunludur.",
+  "Panel başvurularında her panelistin kendi bildiri özetini sisteme ayrı ayrı yüklemesi ve ilgili panel başlığını belirtmesi gerekmektedir.",
   "Her araştırmacı sempozyuma en fazla bir bildiri ile katılabilir.",
-  "Sempozyumun resmi dilleri Türkçe, Arapça ve İngilizcedir.",
-  "Sunum süresi soru-cevap hariç 15 dakikadır.",
-  "Sempozyuma katılım ücretsizdir; ulaşım ve konaklama giderleri katılımcılara aittir.",
-  "Kabul edilen tam metinler ISBN'li hakemli bildiri kitabında yayımlanacaktır.",
+  "Ortak yazarlı bildirilerde sunumu gerçekleştirecek yazar belirtilmelidir.",
+  "Sempozyumun resmî dilleri Türkçe, Arapça ve İngilizcedir.",
+  "Bildirilerin sunum süresi, soru-cevap bölümü hariç 15 dakikadır.",
+  "Bildiri özetleri Bilim Kurulu tarafından çift kör hakemlik esasına göre değerlendirilecektir.",
+  "Tam metinler en az 3.000, en fazla 8.000 kelime olmalıdır.",
+  "Sempozyumda sunulan ve yayıma uygun görülen bildiriler I. Uluslararası Türbeler Sempozyumu Bildirileri adıyla hakemli bildiri kitabında yayımlanacaktır.",
+  "Bildiri özetleri ve tam metinler daha önce herhangi bir bilimsel toplantıda sunulmamış ve yayımlanmamış özgün akademik çalışmalar olmalıdır.",
+];
+
+const abstractGuide = [
+  "Yalnızca belirtilen esaslara uygun hazırlanan bildiri özetleri değerlendirmeye alınacaktır.",
+  "Bildiri özeti; konuyu, amacı, kapsamı, yöntemi, temel kaynakları ve özgün katkıyı açık ve özlü biçimde ortaya koymalı; 150-300 kelime arasında olmalıdır.",
+  "Bildiri özetleri Türkçe, Arapça veya İngilizce dillerinden biriyle hazırlanabilir.",
+  "Her bildiri özeti, çalışmanın içeriğini yansıtan en az 3, en fazla 5 anahtar kelime içermelidir.",
+  "Başvuru sırasında yazar adı-soyadı, akademik unvan, kurum, ORCID numarası, e-posta ve telefon bilgileri eksiksiz girilmelidir.",
+  "E-posta yoluyla gönderilen başvurular değerlendirmeye alınmayacaktır.",
+  "Özetler bilimsel özgünlük, yöntem, konuya uygunluk ve akademik katkı bakımından değerlendirilecektir.",
+];
+
+const travelRules = [
+  "Sempozyuma katılım ücretsizdir. Bildiri sunacak araştırmacılar ile dinleyicilerden herhangi bir katılım ücreti alınmayacaktır.",
+  "Katılımcıların ulaşım, konaklama ve kişisel giderleri kendilerine aittir.",
+  "Sempozyum yüz yüze gerçekleştirilecek olup çevrim içi sunum veya uzaktan katılım imkânı bulunmamaktadır.",
 ];
 
 const faqs = [
-  ["Sempozyum nerede gerçekleştirilecektir?", "I. Uluslararası Türbeler Sempozyumu, 1-3 Nisan 2027 tarihlerinde İstanbul'da, Fatih Belediyesi ev sahipliğinde gerçekleştirilecektir."],
-  ["Katılım ücretli mi?", "Hayır. Bildiri sunacak araştırmacılar ve dinleyicilerden katılım ücreti alınmayacaktır."],
-  ["Çevrim içi katılım mümkün mü?", "Hayır. Sempozyum kapsamında tüm sunumların yüz yüze gerçekleştirilmesi esastır."],
-  ["Panel başvurusu yapılabilir mi?", "Evet. Panel önerilerinin en az dört bildiriden oluşması ve ortak bir panel başlığıyla sunulması gerekmektedir."],
-  ["Bildiriler yayımlanacak mı?", "Hakem ve editöryal değerlendirme süreçlerinin ardından uygun bulunan metinler I. Uluslararası Türbeler Sempozyumu Bildirileri adıyla yayımlanacaktır."],
+  [
+    "Sempozyum nerede gerçekleştirilecektir?",
+    "I. Uluslararası Türbeler Sempozyumu, 31 Mart - 1 Nisan 2027 tarihlerinde İstanbul’da, Fatih Belediyesi ev sahipliğinde gerçekleştirilecektir.",
+  ],
+  [
+    "Sempozyuma katılım için ücret ödemem gerekiyor mu?",
+    "Hayır. Sempozyuma katılım ücretsizdir. Bildiri sunacak araştırmacılar ve dinleyicilerden herhangi bir katılım ücreti talep edilmemektedir.",
+  ],
+  [
+    "Ulaşım ve konaklama giderleri organizasyon tarafından karşılanacak mıdır?",
+    "Hayır. Katılımcıların ulaşım, konaklama ve diğer kişisel giderleri kendilerine aittir.",
+  ],
+  [
+    "Sempozyuma çevrim içi katılım mümkün müdür?",
+    "Hayır. Sempozyum kapsamında çevrim içi sunum veya uzaktan katılım imkânı bulunmamaktadır. Tüm sunumların yüz yüze gerçekleştirilmesi esastır.",
+  ],
+  [
+    "Sunum yapmadan yalnızca tam metin gönderebilir miyim?",
+    "Hayır. Sempozyum programında sözlü olarak sunulmayan bildirilerin tam metinleri değerlendirmeye alınmayacaktır.",
+  ],
+  [
+    "Sempozyuma panel başvurusu yapılabilir mi?",
+    "Evet. Sempozyuma bireysel bildiri başvurularının yanı sıra panel başvuruları da kabul edilmektedir. Panel önerilerinin en az dört bildiriden oluşması ve ortak bir panel başlığıyla sunulması gerekmektedir.",
+  ],
+  [
+    "Birden fazla bildiri ile başvuru yapabilir miyim?",
+    "Hayır. Her araştırmacı sempozyuma en fazla bir bildiri ile katılabilir.",
+  ],
+  [
+    "Sempozyumun resmî dilleri nelerdir?",
+    "Sempozyumun resmî dilleri Türkçe, Arapça ve İngilizcedir.",
+  ],
+  [
+    "Sempozyumda sunulan bildiriler yayımlanacak mıdır?",
+    "Evet. Bilim Kurulu ve Yayın Kurulu tarafından hakem değerlendirmesi sonucunda yayımlanmaya uygun bulunan bildiriler, bildiri kitabında yayımlanacaktır.",
+  ],
+  [
+    "Bildiriler nerede yayımlanacaktır?",
+    "Kabul edilen tam metinler, editöryal ve hakemlik süreçlerinin tamamlanmasının ardından I. Uluslararası Türbeler Sempozyumu Bildirileri adıyla bildiri kitabında yayımlanacaktır.",
+  ],
+  [
+    "Katılım belgesi verilecek midir?",
+    "Evet. Sempozyum programında bildirisini sunan araştırmacılara dijital veya basılı katılım belgesi takdim edilecektir.",
+  ],
+  [
+    "Bildiri özeti ve tam metin için yazım kuralları nerede yer almaktadır?",
+    "Bildiri hazırlama esasları ve yazım kuralları sempozyumun resmî internet sitesinde yayımlanacak olup, başvurular bu kurallara uygun şekilde yapılmalıdır.",
+  ],
+  [
+    "Sempozyum programı ne zaman ilan edilecektir?",
+    "Bilim Kurulu değerlendirmelerinin tamamlanmasının ardından kesin sempozyum programı resmî internet sitesi üzerinden ilan edilecektir.",
+  ],
+  [
+    "İletişim ve duyurulara nasıl ulaşabilirim?",
+    "Sempozyuma ilişkin tüm duyurular, önemli tarihler ve güncel bilgiler resmî sempozyum internet sitesi ve iletişim kanalları aracılığıyla katılımcılarla paylaşılacaktır.",
+  ],
 ];
 
 export default function Home() {
@@ -137,6 +336,7 @@ export default function Home() {
         <nav>
           <a href="#cagri">Çağrı</a>
           <a href="#konular">Konular</a>
+          <a href="#bilgiler">Bilgiler</a>
           <a href="#tarihler">Tarihler</a>
           <a href="#basvuru">Başvuru</a>
           <a href="#iletisim">İletişim</a>
@@ -145,7 +345,7 @@ export default function Home() {
 
       <section className="hero" id="top" aria-labelledby="hero-title">
         <div className="hero-media" aria-hidden="true">
-          <img src="/hero-turbeler.png" alt="" />
+          <Image alt="" fill priority sizes="100vw" src="/hero-turbeler.png" />
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -168,7 +368,7 @@ export default function Home() {
         <dl className="hero-facts" aria-label="Sempozyum özeti">
           <div>
             <dt>Tarih</dt>
-            <dd>1-3 Nisan 2027</dd>
+            <dd>31 Mart - 1 Nisan 2027</dd>
           </div>
           <div>
             <dt>Yer</dt>
@@ -187,18 +387,29 @@ export default function Home() {
           <h2>Türbe kültürünü din, tarih, mimari ve kültürel miras ekseninde yeniden düşünmek</h2>
         </div>
         <div className="intro-copy">
+          {callParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </section>
+
+      <section className="info-section" id="bilgiler">
+        <div className="section-heading">
+          <p className="eyebrow">Sempozyum Bilgileri</p>
+          <h2>Yer, tarih ve kurumsal katkı</h2>
+        </div>
+        <div className="intro-copy info-copy">
           <p>
-            Uluslararası Türbeler Sempozyumu-I, Türbeler-Çeşmeler Taşınır ve
+            Uluslararası Türbeler Sempozyumu, Türbeler-Çeşmeler Taşınır ve
             Taşınmaz Kültür Varlıklarını Koruma ve Yaşatma Derneği (TÜRÇEK)
-            tarafından, Fatih Belediyesi ev sahipliğinde ve paydaş kurumların
-            katkılarıyla 1-3 Nisan 2027 tarihlerinde İstanbul&apos;da düzenlenecektir.
+            tarafından, Fatih Belediyesi ev sahipliğinde; İstanbul Valiliği,
+            İstanbul İl Kültür ve Turizm Müdürlüğü, Türkiye Yazma Eserler
+            Kurumu Başkanlığı, Kocaeli Büyükşehir Belediyesi ve diğer paydaş
+            kurumların katkılarıyla gerçekleştirilecektir.
           </p>
           <p>
-            &quot;Geçmişten Geleceğe Türbe Kültürü&quot; ana temasıyla düzenlenen
-            sempozyum; dini ilimler, tarih, sanat tarihi, mimarlık, tasavvuf,
-            vakıf tarihi, kültürel miras, sosyoloji, psikoloji, antropoloji,
-            hukuk, turizm ve dijital beşeri bilimler alanlarından araştırmacıları
-            ortak bir akademik platformda buluşturmayı hedeflemektedir.
+            Sempozyum 31 Mart - 1 Nisan 2027 tarihlerinde İstanbul’da yüz yüze
+            düzenlenecektir.
           </p>
         </div>
       </section>
@@ -238,13 +449,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="rules-section" id="bilgiler">
+      <section className="rules-section">
         <div className="section-heading">
           <p className="eyebrow">Katılım Şartları</p>
           <h2>Başvuru ve sunum esasları</h2>
         </div>
         <div className="rules-grid">
           {participationRules.map((rule) => (
+            <article key={rule}>
+              <p>{rule}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="faq-section" id="ozet-kilavuzu">
+        <div className="section-heading">
+          <p className="eyebrow">Özet Kılavuzu</p>
+          <h2>Bildiri özeti hazırlama ilkeleri</h2>
+        </div>
+        <div className="rules-grid">
+          {abstractGuide.map((rule) => (
+            <article key={rule}>
+              <p>{rule}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="info-section" id="ulasim-konaklama">
+        <div className="section-heading">
+          <p className="eyebrow">Ulaşım ve Konaklama</p>
+          <h2>Katılım ücretsizdir</h2>
+        </div>
+        <div className="rules-grid">
+          {travelRules.map((rule) => (
             <article key={rule}>
               <p>{rule}</p>
             </article>
@@ -262,8 +501,8 @@ export default function Home() {
             <article className="committee-card" key={group.title}>
               <h3>{group.title}</h3>
               <ul>
-                {group.names.map((name) => (
-                  <li key={name}>{name}</li>
+                {group.names.map((name, index) => (
+                  <li key={`${name}-${index}`}>{name}</li>
                 ))}
               </ul>
             </article>
@@ -293,8 +532,8 @@ export default function Home() {
           <p>
             Formu doldurduğunuzda başvurunuz sempozyum kayıt havuzuna
             iletilir. Özet metni 150-300 kelime aralığında olmalı ve 3-5
-            anahtar kelime içermelidir. Panel önerileri için dört tebliğci
-            bilgisi zorunludur.
+            anahtar kelime içermelidir. Panel önerileri için ortak panel
+            başlığı ve en az dört tebliğci bilgisi zorunludur.
           </p>
         </div>
         <RegistrationForm topics={topicTitles} />
