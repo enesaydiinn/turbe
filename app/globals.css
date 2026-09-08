@@ -77,43 +77,15 @@ img {
 .brand {
   align-items: center;
   display: inline-flex;
-  gap: 14px;
   min-width: 0;
 }
 
 .brand-logo {
-  background: rgba(251, 247, 238, 0.96);
-  border: 1px solid rgba(182, 138, 74, 0.34);
-  border-radius: 4px;
   display: block;
-  height: 52px;
+  height: 54px;
+  max-width: min(320px, 34vw);
   object-fit: contain;
-  padding: 4px;
   width: auto;
-}
-
-.brand-title,
-.brand-title strong,
-.brand-title small {
-  display: block;
-  line-height: 1.1;
-  min-width: 0;
-}
-
-.brand-title strong {
-  color: #fff8e8;
-  font-family: var(--font-crimson), Georgia, serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.brand-title small {
-  color: var(--gold);
-  font-size: 0.76rem;
-  font-weight: 700;
-  margin-top: 3px;
-  text-transform: uppercase;
 }
 
 .site-header nav {
@@ -211,18 +183,16 @@ img {
 }
 
 .hero-crest {
-  background: rgba(251, 247, 238, 0.95);
-  border: 1px solid rgba(182, 138, 74, 0.42);
-  border-radius: 6px;
   display: inline-flex;
   margin-bottom: 42px;
-  padding: 10px;
 }
 
 .hero-crest img {
-  height: 68px;
+  height: auto;
+  max-height: 170px;
+  max-width: min(720px, 88vw);
   object-fit: contain;
-  width: auto;
+  width: 100%;
 }
 
 .eyebrow {
@@ -972,7 +942,8 @@ section,
 
 .admin-brand-logo {
   display: block;
-  height: 46px;
+  height: 44px;
+  max-width: min(220px, 34vw);
   object-fit: contain;
   width: auto;
 }
@@ -1380,15 +1351,8 @@ section,
   }
 
   .brand-logo {
-    height: 44px;
-  }
-
-  .brand-title strong {
-    font-size: 0.82rem;
-  }
-
-  .brand-title small {
-    display: none;
+    height: 42px;
+    max-width: min(260px, 82vw);
   }
 
   .site-header nav {
@@ -1414,11 +1378,10 @@ section,
 
   .hero-crest {
     margin-bottom: 26px;
-    padding: 8px;
   }
 
   .hero-crest img {
-    height: 56px;
+    max-width: min(340px, 88vw);
   }
 
   .hero h1 {

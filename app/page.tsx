@@ -323,14 +323,10 @@ export default function Home() {
           <Image
             alt="TÜRÇEK"
             className="brand-logo"
-            height={68}
+            height={758}
             src="/turcek-logo.png"
-            width={72}
+            width={2073}
           />
-          <span className="brand-title">
-            <strong>Uluslararası Türbeler Sempozyumu</strong>
-            <small>31 Mart - 1 Nisan 2027, İstanbul</small>
-          </span>
         </a>
         <nav>
           <a href="#cagri">Tebliğ Çağrısı</a>
@@ -356,10 +352,10 @@ export default function Home() {
           <span className="hero-crest">
             <Image
               alt=""
-              height={68}
+              height={758}
               priority
               src="/turcek-logo.png"
-              width={72}
+              width={2073}
             />
           </span>
           <p className="eyebrow">TÜRÇEK ve Fatih Belediyesi ev sahipliğinde</p>

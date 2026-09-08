@@ -292,9 +292,9 @@ export function AdminDashboard({
           <Image
             alt="TÜRÇEK"
             className="admin-brand-logo"
-            height={68}
+            height={758}
             src="/turcek-logo.png"
-            width={72}
+            width={2073}
           />
           <strong>TÜRÇEK Admin</strong>
         </Link>
