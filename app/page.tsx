@@ -333,14 +333,13 @@ export default function Home() {
           <a href="#konular">Konu Başlıkları</a>
           <a href="#kurullar">Kurullar</a>
           <a href="#bilgiler">Sempozyum Bilgileri</a>
+          <a href="#tarihler">Tarihler</a>
           <a href="#basvuru">Başvurular</a>
           <a href="#iletisim">İletişim</a>
         </nav>
-        <div className="language-pills" aria-label="Sempozyum dilleri">
-          <span>TR</span>
-          <span>AR</span>
-          <span>EN</span>
-        </div>
+        <a className="header-apply" href="#basvuru">
+          Başvuru
+        </a>
       </header>
 
       <section className="hero" id="top" aria-labelledby="hero-title">
@@ -349,23 +348,38 @@ export default function Home() {
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
-          <span className="hero-crest">
-            <Image
-              alt=""
-              height={758}
-              priority
-              src="/turcek-logo.png"
-              width={2073}
-            />
-          </span>
-          <p className="eyebrow">TÜRÇEK ve Fatih Belediyesi ev sahipliğinde</p>
+          <div className="hero-kicker">
+            <span>TÜRÇEK tarafından</span>
+            <span>Fatih Belediyesi ev sahipliğinde</span>
+            <span>İstanbul</span>
+          </div>
           <h1 id="hero-title">Uluslararası Türbeler Sempozyumu</h1>
           <p className="hero-subtitle">
             <span>Geçmişten Geleceğe Türbe Kültürü</span>
+            <span>
+              Türbeleri dinî ilimler, şehir hafızası, mimari ve kültürel miras
+              ekseninde yeniden düşünmeye davet.
+            </span>
+          </p>
+          <p className="hero-date">
+            31 Mart - 1 Nisan 2027
             <span>International Symposium on Mausoleums-I</span>
             <span dir="rtl" lang="ar">المؤتمر الدولي الأول للأضرحة الإسلامية</span>
           </p>
-          <p className="hero-date">31 Mart - 1 Nisan 2027, İstanbul</p>
+          <div className="hero-actions">
+            <a className="primary-action" href="#cagri">
+              Keşfet
+            </a>
+            <a className="secondary-action" href="#basvuru">
+              Başvuru Yap
+            </a>
+          </div>
+        </div>
+        <div className="hero-timebar">
+          <div className="timebar-heading">
+            <span>Başlangıca Kalan Süre</span>
+            <strong>31 Mart 2027, İstanbul</strong>
+          </div>
           <Countdown targetDate="2027-03-31T09:00:00+03:00" />
           <dl className="hero-facts" aria-label="Sempozyum özeti">
             <div>
@@ -378,17 +392,9 @@ export default function Home() {
             </div>
             <div>
               <dt>Diller</dt>
-              <dd>TR / AR / EN</dd>
+              <dd>Türkçe / Arapça / İngilizce</dd>
             </div>
           </dl>
-          <div className="hero-actions">
-            <a className="primary-action" href="#cagri">
-              Keşfet
-            </a>
-            <a className="secondary-action" href="#basvuru">
-              Başvuru Yap
-            </a>
-          </div>
         </div>
       </section>
 
