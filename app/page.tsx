@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CommitteeTabs } from "./components/CommitteeTabs";
 import { Countdown } from "./components/Countdown";
 import { RegistrationForm } from "./components/RegistrationForm";
 
@@ -152,10 +153,14 @@ const topicGroups = [
 const committeeGroups = [
   {
     title: "Sempozyum Yönetimi / إدارة الملتقى / Symposium Management",
+    description:
+      "Sempozyumun akademik yönünü ve kurumsal koordinasyonunu yöneten çekirdek ekip.",
     names: ["Prof. Dr. Ahmet Emre Bilgili", "Dr. Osman Gökmen"],
   },
   {
     title: "Düzenleme Kurulu / لجنة التنظیم / Organizing Committee",
+    description:
+      "Hazırlık, program akışı, kurumlar arası eşgüdüm ve saha organizasyonundan sorumlu kurul.",
     names: [
       "Cengiz Tomar",
       "Coşkun Yılmaz",
@@ -174,6 +179,8 @@ const committeeGroups = [
   },
   {
     title: "Bilim Kurulu / اللجنة العلمیة / Scientific Committee",
+    description:
+      "Bildiri özetlerini akademik özgünlük, yöntem, konu uygunluğu ve katkı bakımından değerlendiren kurul.",
     names: [
       "Hakkı Önkal",
       "Cengiz Tomar",
@@ -211,8 +218,17 @@ const committeeGroups = [
   },
   {
     title: "Sekreterya / الأمانة العامة / Secretariat",
+    description:
+      "Başvuru takibi, duyurular ve katılımcı iletişimi için ana koordinasyon birimi.",
     names: ["Osman Gökmen"],
   },
+];
+
+const overviewCards = [
+  ["Ana Tema", "Geçmişten Geleceğe Türbe Kültürü"],
+  ["Başvuru Türü", "Bireysel bildiri veya panel önerisi"],
+  ["Resmî Diller", "Türkçe, Arapça ve İngilizce"],
+  ["Yayın Süreci", "Hakemli sempozyum bildiri kitabı"],
 ];
 
 const importantDates = [
@@ -422,6 +438,17 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="overview-section" aria-label="Sempozyum kısa özeti">
+        <div className="overview-grid">
+          {overviewCards.map(([title, body]) => (
+            <article key={title}>
+              <span>{title}</span>
+              <strong>{body}</strong>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="intro-band" id="cagri">
         <div className="section-heading">
           <p className="eyebrow">Sempozyum Tebliğ Çağrısı</p>
@@ -563,22 +590,11 @@ export default function Home() {
       </section>
 
       <section className="committee-section" id="kurullar">
-        <div className="section-heading">
+        <div className="section-heading section-heading-centered">
           <p className="eyebrow">Kurullar</p>
           <h2>Akademik ve kurumsal yapı</h2>
         </div>
-        <div className="committee-grid">
-          {committeeGroups.map((group) => (
-            <article className="committee-card" key={group.title}>
-              <h3>{group.title}</h3>
-              <ul>
-                {group.names.map((name, index) => (
-                  <li key={`${name}-${index}`}>{name}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+        <CommitteeTabs groups={committeeGroups} />
       </section>
 
       <section className="faq-section" id="sss">
@@ -588,10 +604,10 @@ export default function Home() {
         </div>
         <div className="faq-list">
           {faqs.map(([question, answer]) => (
-            <article key={question}>
-              <h3>{question}</h3>
+            <details key={question}>
+              <summary>{question}</summary>
               <p>{answer}</p>
-            </article>
+            </details>
           ))}
         </div>
       </section>

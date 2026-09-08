@@ -3,14 +3,19 @@ import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 test("keeps the symposium homepage content in place", async () => {
-  const [page, layout, countdown] = await Promise.all([
+  const [page, layout, countdown, committeeTabs] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/Countdown.tsx", import.meta.url), "utf8"),
+    readFile(
+      new URL("../app/components/CommitteeTabs.tsx", import.meta.url),
+      "utf8",
+    ),
   ]);
 
   assert.match(page, /RegistrationForm/);
   assert.match(page, /Countdown/);
+  assert.match(page, /CommitteeTabs/);
   assert.match(page, /Uluslararası Türbeler Sempozyumu/);
   assert.match(page, /31 Mart - 1 Nisan 2027/);
   assert.match(page, /2027-03-31T09:00:00\+03:00/);
@@ -30,6 +35,9 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(layout, /Uluslararası Türbeler Sempozyumu/);
   assert.match(countdown, /setInterval/);
   assert.match(countdown, /Sempozyuma kalan süre/);
+  assert.match(committeeTabs, /useState/);
+  assert.match(committeeTabs, /role="tablist"/);
+  assert.match(committeeTabs, /committee-person-card/);
 });
 
 test("is configured for Vercel and Supabase", async () => {
