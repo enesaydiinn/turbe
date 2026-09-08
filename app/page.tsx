@@ -381,68 +381,38 @@ export default function Home() {
           <h2>Türbe kültürünü din, tarih, mimari ve kültürel miras ekseninde yeniden düşünmek</h2>
         </div>
         <div className="intro-copy">
+          <p>Değerli Araştırmacı,</p>
           <p>
-            <strong>Değerli Araştırmacı,</strong>
+            İslâm medeniyetinin dinî, tarihî ve kültürel mirasının önemli
+            unsurlarından biri olan türbeler; mimarîden sanat tarihine,
+            tasavvuftan vakıf kültürüne, şehir tarihinden toplumsal hafızaya
+            kadar pek çok disiplinin ortak araştırma alanını oluşturmaktadır.
+            Bununla birlikte özellikle dinî ilimler ve dijital beşerî bilimler
+            ekseninde türbe çalışmalarının disiplinler arası yaklaşımlarla
+            geliştirilmesine ihtiyaç duyulmaktadır.
           </p>
           <p>
-            İslâm medeniyetinin dinî, tarihî, mimarî ve kültürel mirasının en
-            önemli unsurlarından biri olan türbeler, asırlar boyunca yalnızca
-            defin mekânı olmanın ötesinde; inanç, ilim, sanat, şehirleşme ve
-            toplumsal hafızanın şekillenmesinde belirleyici rol üstlenmiş
-            müstesna yapılardır. Türbeler; mimarî özellikleri, kitabeleri,
-            hazireleri, vakfiyeleri, etraflarında teşekkül eden ilmî ve
-            tasavvufî gelenekleri, ziyaret kültürü ve zengin kültürel
-            birikimiyle farklı disiplinlerin ortak araştırma alanını
-            oluşturmaktadır. Son yıllarda türbeler üzerine mimarlık, sanat
-            tarihi, restorasyon, halk bilimi, kültürel miras ve inanç turizmi
-            alanlarında önemli akademik çalışmalar gerçekleştirilmiş olmakla
-            birlikte; Kur’ân ve hadis araştırmaları, fıkıh, kelâm, İslâm
-            tarihi, vakıf tarihi ve hukuk tarihi gibi dinî ilimler eksenindeki
-            çalışmaların henüz arzu edilen seviyeye ulaşmadığı görülmektedir.
-            Bu durum, türbe olgusunun disiplinler arası bir yaklaşımla yeniden
-            ele alınmasını ve farklı ilmî sahalarda üretilen araştırmaların
-            ortak bir platformda değerlendirilmesini gerekli kılmaktadır.
+            Bu doğrultuda TÜRÇEK tarafından, Fatih Belediyesi ev sahipliğinde
+            ve çeşitli kamu kurumlarının katkılarıyla 31 Mart–1 Nisan 2027
+            tarihlerinde İstanbul’da “Geçmişten Geleceğe Türbe Kültürü” ana
+            temasıyla I. Uluslararası Türbeler Sempozyumu düzenlenecektir.
           </p>
           <p>
-            Bu ihtiyaçtan hareketle,{" "}
-            <strong>
-              Türbeler-Çeşmeler Taşınır ve Taşınmaz Kültür Varlıklarını Koruma
-              ve Yaşatma Derneği (TÜRÇEK)
-            </strong>{" "}
-            tarafından, <strong>Fatih Belediyesi</strong> ev sahipliğinde;{" "}
-            <strong>İstanbul Valiliği</strong>,{" "}
-            <strong>İstanbul İl Kültür ve Turizm Müdürlüğü</strong>,{" "}
-            <strong>Türkiye Yazma Eserler Kurumu Başkanlığı</strong>,{" "}
-            <strong>Kocaeli Büyükşehir Belediyesi</strong> ve diğer paydaş
-            kurumların katkılarıyla <strong>31 Mart–1 Nisan 2027</strong>{" "}
-            tarihlerinde İstanbul’da{" "}
-            <strong>I. Uluslararası Türbeler Sempozyumu</strong>{" "}
-            düzenlenecektir.{" "}
-            <strong>“Geçmişten Geleceğe Türbe Kültürü”</strong> ana temasıyla
-            gerçekleştirilecek sempozyumda; türbelerin dinî kaynaklardaki yeri,
-            tarihî gelişimi, mimarî ve sanat tarihi özellikleri, tasavvuf
-            geleneği, vakıf medeniyeti, kültürel miras, şehir tarihi,
-            sosyolojik ve psikolojik boyutları ile dijital çağda türbe kültürü
-            gibi çok yönlü meselelerin ulusal ve uluslararası araştırmacılar
-            tarafından bilimsel bir zeminde ele alınması hedeflenmektedir.
-            Sempozyum;{" "}
-            <strong>
-              dinî ilimler, tarih, sanat tarihi, mimarlık, tasavvuf, vakıf
-              tarihi, kültürel miras, sosyoloji, psikoloji, antropoloji, hukuk,
-              turizm ve dijital beşerî bilimler
-            </strong>{" "}
-            başta olmak üzere farklı disiplinlerden araştırmacıları bir araya
-            getirerek, türbe araştırmalarına yeni perspektifler kazandırmayı ve
-            disiplinler arası akademik iş birliğini güçlendirmeyi
-            amaçlamaktadır. Bilim Kurulu tarafından kabul edilen bildiriler,
-            sempozyumda sözlü olarak sunulduktan sonra hakem ve editöryal
-            değerlendirme süreçlerinin tamamlanmasını müteakip{" "}
-            <strong>sempozyum bildiri kitabında</strong> yayımlanacaktır.
+            Sempozyumda; türbelerin dinî kaynaklardaki yeri, tarihî gelişimi,
+            mimarî ve sanat özellikleri, tasavvuf ve vakıf geleneği, kültürel
+            miras, şehir tarihi, sosyolojik ve psikolojik boyutları ile dijital
+            çağda türbe kültürü farklı disiplinlerden araştırmacıların
+            katkılarıyla ele alınacaktır.
           </p>
           <p>
-            Türbe araştırmalarına katkı sağlayacak özgün çalışmalarınızla{" "}
-            <strong>Uluslararası Türbeler Sempozyumu</strong>’na iştirak
-            etmenizden memnuniyet duyacağız.
+            Bilim Kurulu tarafından kabul edilen bildiriler, sempozyumda
+            sunulmasının ardından hakem ve editöryal değerlendirme süreçleri
+            tamamlanarak bildiri kitabında yayımlanacaktır.
+          </p>
+          <p>
+            Türbe araştırmalarına katkı sağlayacak özgün çalışmalarınızla I.
+            Uluslararası Türbeler Sempozyumu’na iştirakinizden memnuniyet
+            duyacağız.
           </p>
         </div>
       </section>
