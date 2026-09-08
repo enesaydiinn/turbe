@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Countdown } from "./components/Countdown";
 import { RegistrationForm } from "./components/RegistrationForm";
 
 const topicGroups = [
@@ -326,15 +327,24 @@ export default function Home() {
             src="/turcek-logo.png"
             width={72}
           />
+          <span className="brand-title">
+            <strong>Uluslararası Türbeler Sempozyumu</strong>
+            <small>31 Mart - 1 Nisan 2027, İstanbul</small>
+          </span>
         </a>
         <nav>
-          <a href="#cagri">Çağrı</a>
-          <a href="#konular">Konular</a>
-          <a href="#bilgiler">Bilgiler</a>
-          <a href="#tarihler">Tarihler</a>
-          <a href="#basvuru">Başvuru</a>
+          <a href="#cagri">Tebliğ Çağrısı</a>
+          <a href="#konular">Konu Başlıkları</a>
+          <a href="#kurullar">Kurullar</a>
+          <a href="#bilgiler">Sempozyum Bilgileri</a>
+          <a href="#basvuru">Başvurular</a>
           <a href="#iletisim">İletişim</a>
         </nav>
+        <div className="language-pills" aria-label="Sempozyum dilleri">
+          <span>TR</span>
+          <span>AR</span>
+          <span>EN</span>
+        </div>
       </header>
 
       <section className="hero" id="top" aria-labelledby="hero-title">
@@ -343,36 +353,47 @@ export default function Home() {
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
+          <span className="hero-crest">
+            <Image
+              alt=""
+              height={68}
+              priority
+              src="/turcek-logo.png"
+              width={72}
+            />
+          </span>
           <p className="eyebrow">TÜRÇEK ve Fatih Belediyesi ev sahipliğinde</p>
           <h1 id="hero-title">Uluslararası Türbeler Sempozyumu</h1>
           <p className="hero-subtitle">
-            Geçmişten Geleceğe Türbe Kültürü
+            <span>Geçmişten Geleceğe Türbe Kültürü</span>
             <span>International Symposium on Mausoleums-I</span>
-            <span>المؤتمر الدولي الأول للأضرحة الإسلامية</span>
+            <span dir="rtl" lang="ar">المؤتمر الدولي الأول للأضرحة الإسلامية</span>
           </p>
+          <p className="hero-date">31 Mart - 1 Nisan 2027, İstanbul</p>
+          <Countdown targetDate="2027-03-31T09:00:00+03:00" />
+          <dl className="hero-facts" aria-label="Sempozyum özeti">
+            <div>
+              <dt>Tarih</dt>
+              <dd>31 Mart - 1 Nisan 2027</dd>
+            </div>
+            <div>
+              <dt>Yer</dt>
+              <dd>İstanbul</dd>
+            </div>
+            <div>
+              <dt>Diller</dt>
+              <dd>TR / AR / EN</dd>
+            </div>
+          </dl>
           <div className="hero-actions">
-            <a className="primary-action" href="#basvuru">
-              Bildiri Başvurusu Yap
+            <a className="primary-action" href="#cagri">
+              Keşfet
             </a>
-            <a className="secondary-action" href="#konular">
-              Konu Başlıklarını İncele
+            <a className="secondary-action" href="#basvuru">
+              Başvuru Yap
             </a>
           </div>
         </div>
-        <dl className="hero-facts" aria-label="Sempozyum özeti">
-          <div>
-            <dt>Tarih</dt>
-            <dd>31 Mart - 1 Nisan 2027</dd>
-          </div>
-          <div>
-            <dt>Yer</dt>
-            <dd>İstanbul</dd>
-          </div>
-          <div>
-            <dt>Diller</dt>
-            <dd>TR / AR / EN</dd>
-          </div>
-        </dl>
       </section>
 
       <section className="intro-band" id="cagri">
