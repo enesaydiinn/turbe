@@ -1,4 +1,11 @@
-import { insertApplication, SupabaseConfigError } from "@/app/lib/supabase";
+import {
+  type ApplicationAttachment,
+  getApplicationAttachmentBucket,
+  insertApplication,
+  MAX_APPLICATION_ATTACHMENT_BYTES,
+  normalizeApplicationAttachmentType,
+  SupabaseConfigError,
+} from "@/app/lib/supabase";
 
 type Speaker = {
   fullName: string;
@@ -9,6 +16,7 @@ type Speaker = {
 
 type ApplicationPayload = {
   applicationType: "individual" | "panel";
+  attachment: ApplicationAttachment | null;
   fullName: string;
   email: string;
   phone: string;
@@ -79,6 +87,33 @@ function normalizeSpeakers(value: unknown): Speaker[] {
     );
 }
 
+function normalizeAttachment(value: unknown): ApplicationAttachment | null {
+  if (typeof value !== "object" || value === null) {
+    return null;
+  }
+
+  const record = value as Record<string, unknown>;
+  const fileSize = Number(record.fileSize);
+  const attachment = {
+    bucket: text(record.bucket, 80),
+    fileName: text(record.fileName, 240),
+    fileSize: Number.isFinite(fileSize) ? fileSize : 0,
+    fileType: text(record.fileType, 180),
+    path: text(record.path, 520),
+  };
+
+  if (
+    !attachment.bucket &&
+    !attachment.fileName &&
+    !attachment.fileType &&
+    !attachment.path
+  ) {
+    return null;
+  }
+
+  return attachment;
+}
+
 function normalizePayload(value: unknown): ApplicationPayload {
   const record =
     typeof value === "object" && value !== null
@@ -89,6 +124,7 @@ function normalizePayload(value: unknown): ApplicationPayload {
 
   return {
     applicationType,
+    attachment: normalizeAttachment(record.attachment),
     fullName: text(record.fullName, 180),
     email: text(record.email, 180),
     phone: text(record.phone, 80),
@@ -172,6 +208,28 @@ function validatePayload(payload: ApplicationPayload) {
     return "Kişisel veri onayı zorunludur.";
   }
 
+  if (payload.attachment) {
+    const hasValidStoragePath =
+      /^applications\/\d{4}-\d{2}-\d{2}\/[0-9a-f-]{36}-[^/]+\.(pdf|doc|docx)$/i.test(
+        payload.attachment.path,
+      );
+    const normalizedType = normalizeApplicationAttachmentType(
+      payload.attachment.fileName,
+      payload.attachment.fileType,
+    );
+
+    if (
+      payload.attachment.bucket !== getApplicationAttachmentBucket() ||
+      !hasValidStoragePath ||
+      !normalizedType ||
+      payload.attachment.fileType !== normalizedType ||
+      payload.attachment.fileSize <= 0 ||
+      payload.attachment.fileSize > MAX_APPLICATION_ATTACHMENT_BYTES
+    ) {
+      return "Dosya bilgisi doğrulanamadı. Lütfen PDF veya Word dosyasını yeniden yükleyin.";
+    }
+  }
+
   return "";
 }
 
@@ -214,6 +272,11 @@ export async function POST(request: Request) {
       published_before: payload.publishedBefore === "yes",
       speakers: payload.speakers,
       notes: payload.notes || null,
+      attachment_bucket: payload.attachment?.bucket ?? null,
+      attachment_name: payload.attachment?.fileName ?? null,
+      attachment_path: payload.attachment?.path ?? null,
+      attachment_size: payload.attachment?.fileSize ?? null,
+      attachment_type: payload.attachment?.fileType ?? null,
       user_agent: request.headers.get("user-agent"),
     });
 

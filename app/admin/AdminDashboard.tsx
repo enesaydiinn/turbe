@@ -38,6 +38,14 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
+function formatFileSize(value: number | null) {
+  if (!value) {
+    return "";
+  }
+
+  return `${(value / (1024 * 1024)).toFixed(2)} MB`;
+}
+
 function normalize(value: string) {
   return value.toLocaleLowerCase("tr-TR");
 }
@@ -252,6 +260,7 @@ export function AdminDashboard({
       "Tebliğ Başlığı",
       "Özet Dili",
       "Anahtar Kelimeler",
+      "Dosya",
       "Admin Notu",
     ];
     const rows = filteredApplications.map((application) => [
@@ -266,6 +275,7 @@ export function AdminDashboard({
       application.paper_title,
       application.abstract_language,
       application.keywords.join(", "),
+      application.attachment_name,
       application.review_notes,
     ]);
     const csv = [headers, ...rows]
@@ -514,6 +524,24 @@ export function AdminDashboard({
                   <dt>Anahtar kelimeler</dt>
                   <dd>{activeApplication.keywords.join(", ")}</dd>
                 </div>
+                {activeApplication.attachment_path ? (
+                  <div>
+                    <dt>Başvuru dosyası</dt>
+                    <dd>
+                      <a
+                        className="admin-download-link"
+                        href={`/api/admin/applications/${activeApplication.id}/attachment`}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {activeApplication.attachment_name ?? "Dosyayı indir"}
+                      </a>
+                      {activeApplication.attachment_size ? (
+                        <small>{formatFileSize(activeApplication.attachment_size)}</small>
+                      ) : null}
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
 
               {activeApplication.application_type === "panel" ? (

@@ -10,6 +10,23 @@ type ApplicationType = "individual" | "panel";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
+type UploadedAttachment = {
+  bucket: string;
+  fileName: string;
+  fileSize: number;
+  fileType: string;
+  path: string;
+};
+
+const maxAttachmentBytes = 5 * 1024 * 1024;
+const attachmentAccept =
+  ".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+const attachmentTypes = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
+
 const professions = [
   "Akademisyen",
   "Araştırmacı",
@@ -42,10 +59,77 @@ function stringValue(form: FormData, key: string) {
   return String(form.get(key) ?? "").trim();
 }
 
+function getSelectedFile(form: FormData, key: string) {
+  const value = form.get(key);
+
+  return value instanceof File && value.size > 0 ? value : null;
+}
+
+function formatFileSize(size: number) {
+  return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function validateAttachment(file: File) {
+  const hasAllowedExtension = /\.(pdf|doc|docx)$/i.test(file.name);
+  const hasAllowedType =
+    !file.type ||
+    file.type === "application/octet-stream" ||
+    attachmentTypes.has(file.type);
+
+  if (!hasAllowedExtension || !hasAllowedType) {
+    return "Yalnızca PDF, DOC veya DOCX dosyası yükleyebilirsiniz.";
+  }
+
+  if (file.size > maxAttachmentBytes) {
+    return "Dosya boyutu en fazla 5 MB olmalıdır.";
+  }
+
+  return "";
+}
+
+async function uploadAttachment(file: File) {
+  const uploadRequest = await fetch("/api/applications/attachment-upload", {
+    body: JSON.stringify({
+      fileName: file.name,
+      fileSize: file.size,
+      fileType: file.type,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+  const uploadResult = (await uploadRequest.json()) as {
+    attachment?: UploadedAttachment;
+    message?: string;
+    uploadUrl?: string;
+  };
+
+  if (!uploadRequest.ok || !uploadResult.attachment || !uploadResult.uploadUrl) {
+    throw new Error(uploadResult.message ?? "Dosya yükleme bağlantısı alınamadı.");
+  }
+
+  const storageResponse = await fetch(uploadResult.uploadUrl, {
+    body: file,
+    headers: {
+      "Content-Type": uploadResult.attachment.fileType,
+    },
+    method: "PUT",
+  });
+
+  if (!storageResponse.ok) {
+    throw new Error("Dosya Supabase Storage alanına yüklenemedi.");
+  }
+
+  return uploadResult.attachment;
+}
+
 export function RegistrationForm({ topics }: RegistrationFormProps) {
   const [applicationType, setApplicationType] =
     useState<ApplicationType>("individual");
   const [abstractWords, setAbstractWords] = useState(0);
+  const [attachmentLabel, setAttachmentLabel] = useState("");
+  const [attachmentMessage, setAttachmentMessage] = useState("");
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
 
@@ -59,12 +143,46 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
       : "Bildiri Başvurusunu Gönder";
   }, [applicationType, status]);
 
+  function handleAttachmentChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+
+    if (!file) {
+      setAttachmentLabel("");
+      setAttachmentMessage("");
+      return;
+    }
+
+    const validationMessage = validateAttachment(file);
+
+    setAttachmentLabel(`${file.name} · ${formatFileSize(file.size)}`);
+    setAttachmentMessage(validationMessage);
+
+    if (validationMessage) {
+      setStatus("error");
+      setMessage(validationMessage);
+    } else if (status === "error" && message === attachmentMessage) {
+      setStatus("idle");
+      setMessage("");
+    }
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
     const abstractText = stringValue(form, "abstractText");
     const wordCount = countWords(abstractText);
+    const attachmentFile = getSelectedFile(form, "attachmentFile");
+
+    if (attachmentFile) {
+      const validationMessage = validateAttachment(attachmentFile);
+
+      if (validationMessage) {
+        setStatus("error");
+        setMessage(validationMessage);
+        return;
+      }
+    }
 
     if (wordCount < 150 || wordCount > 300) {
       setStatus("error");
@@ -99,6 +217,7 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
 
     const payload = {
       applicationType,
+      attachment: null as UploadedAttachment | null,
       fullName: stringValue(form, "fullName"),
       email: stringValue(form, "email"),
       phone: stringValue(form, "phone"),
@@ -124,12 +243,16 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
     setMessage("");
 
     try {
+      if (attachmentFile) {
+        payload.attachment = await uploadAttachment(attachmentFile);
+      }
+
       const response = await fetch("/api/applications", {
-        method: "POST",
+        body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        method: "POST",
       });
 
       const result = (await response.json()) as { message?: string };
@@ -140,6 +263,8 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
 
       formElement.reset();
       setAbstractWords(0);
+      setAttachmentLabel("");
+      setAttachmentMessage("");
       setStatus("success");
       setMessage("Başvurunuz alındı. Değerlendirme süreci için teşekkür ederiz.");
     } catch (error) {
@@ -343,6 +468,26 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
             required
             rows={8}
           />
+        </label>
+        <label className="field field-wide file-field">
+          <span>
+            Bildiri Dosyası <small>PDF/DOC/DOCX, en fazla 5 MB</small>
+          </span>
+          <input
+            accept={attachmentAccept}
+            aria-describedby="attachment-help"
+            name="attachmentFile"
+            onChange={handleAttachmentChange}
+            type="file"
+          />
+          <p
+            className={`field-help${attachmentMessage ? " field-error" : ""}`}
+            id="attachment-help"
+          >
+            {attachmentMessage ||
+              attachmentLabel ||
+              "Özet veya tam metin dosyanızı PDF ya da Word formatında yükleyebilirsiniz."}
+          </p>
         </label>
         <label className="field field-wide">
           <span>Ek Not</span>

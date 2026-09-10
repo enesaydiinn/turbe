@@ -3,15 +3,20 @@ import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 test("keeps the symposium homepage content in place", async () => {
-  const [page, layout, countdown, committeeTabs] = await Promise.all([
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/components/Countdown.tsx", import.meta.url), "utf8"),
-    readFile(
-      new URL("../app/components/CommitteeTabs.tsx", import.meta.url),
-      "utf8",
-    ),
-  ]);
+  const [page, layout, countdown, committeeTabs, registrationForm] =
+    await Promise.all([
+      readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+      readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+      readFile(new URL("../app/components/Countdown.tsx", import.meta.url), "utf8"),
+      readFile(
+        new URL("../app/components/CommitteeTabs.tsx", import.meta.url),
+        "utf8",
+      ),
+      readFile(
+        new URL("../app/components/RegistrationForm.tsx", import.meta.url),
+        "utf8",
+      ),
+    ]);
 
   assert.match(page, /RegistrationForm/);
   assert.match(page, /Countdown/);
@@ -38,56 +43,84 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(committeeTabs, /useState/);
   assert.match(committeeTabs, /role="tablist"/);
   assert.match(committeeTabs, /committee-person-card/);
+  assert.match(registrationForm, /attachmentFile/);
+  assert.match(registrationForm, /maxAttachmentBytes = 5 \* 1024 \* 1024/);
+  assert.match(registrationForm, /\/api\/applications\/attachment-upload/);
 });
 
 test("is configured for Vercel and Supabase", async () => {
   const [
     route,
+    uploadRoute,
     supabaseLib,
     migration,
     reviewMigration,
+    attachmentMigration,
     packageJson,
     envExample,
     vercelConfig,
   ] = await Promise.all([
-      readFile(new URL("../app/api/applications/route.ts", import.meta.url), "utf8"),
-      readFile(new URL("../app/lib/supabase.ts", import.meta.url), "utf8"),
-      readFile(
-        new URL(
-          "../supabase/migrations/202609020001_create_applications.sql",
-          import.meta.url,
-        ),
-        "utf8",
+    readFile(new URL("../app/api/applications/route.ts", import.meta.url), "utf8"),
+    readFile(
+      new URL(
+        "../app/api/applications/attachment-upload/route.ts",
+        import.meta.url,
       ),
-      readFile(
-        new URL(
-          "../supabase/migrations/202609020002_add_application_review_fields.sql",
-          import.meta.url,
-        ),
-        "utf8",
+      "utf8",
+    ),
+    readFile(new URL("../app/lib/supabase.ts", import.meta.url), "utf8"),
+    readFile(
+      new URL(
+        "../supabase/migrations/202609020001_create_applications.sql",
+        import.meta.url,
       ),
-      readFile(new URL("../package.json", import.meta.url), "utf8"),
-      readFile(new URL("../.env.example", import.meta.url), "utf8"),
-      readFile(new URL("../vercel.json", import.meta.url), "utf8"),
-    ]);
+      "utf8",
+    ),
+    readFile(
+      new URL(
+        "../supabase/migrations/202609020002_add_application_review_fields.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+    readFile(
+      new URL(
+        "../supabase/migrations/202609100001_add_application_attachments.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+    readFile(new URL("../package.json", import.meta.url), "utf8"),
+    readFile(new URL("../.env.example", import.meta.url), "utf8"),
+    readFile(new URL("../vercel.json", import.meta.url), "utf8"),
+  ]);
 
   assert.match(route, /insertApplication/);
+  assert.match(route, /attachment_path/);
+  assert.match(uploadRoute, /createApplicationAttachmentUpload/);
+  assert.match(uploadRoute, /MAX_APPLICATION_ATTACHMENT_BYTES/);
   assert.match(supabaseLib, /NEXT_PUBLIC_SUPABASE_URL/);
   assert.match(supabaseLib, /SUPABASE_SERVICE_ROLE_KEY/);
   assert.match(supabaseLib, /SUPABASE_SECRET_KEY/);
   assert.match(supabaseLib, /adminKey\.startsWith\("eyJ"\)/);
   assert.match(supabaseLib, /\/rest\/v1\/applications/);
+  assert.match(supabaseLib, /createApplicationAttachmentSignedUrl/);
+  assert.match(supabaseLib, /\/object\/upload\/sign/);
   assert.doesNotMatch(route, /cloudflare:workers|D1Database/);
   assert.match(migration, /create table if not exists public\.applications/);
   assert.match(migration, /jsonb_array_length\(speakers\) >= 4/);
   assert.match(migration, /array_length\(keywords, 1\) between 3 and 5/);
   assert.match(migration, /review_notes text/);
   assert.match(reviewMigration, /add column if not exists review_notes text/);
+  assert.match(attachmentMigration, /attachment_path text/);
+  assert.match(attachmentMigration, /storage\.buckets/);
+  assert.match(attachmentMigration, /5242880/);
   assert.match(packageJson, /"build": "next build"/);
   assert.match(envExample, /NEXT_PUBLIC_SUPABASE_URL/);
   assert.match(envExample, /NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY/);
   assert.match(envExample, /SUPABASE_SERVICE_ROLE_KEY/);
   assert.match(envExample, /SUPABASE_SECRET_KEY/);
+  assert.match(envExample, /SUPABASE_APPLICATION_FILES_BUCKET/);
   assert.match(envExample, /ADMIN_USERNAME/);
   assert.match(envExample, /ADMIN_PASSWORD/);
   assert.match(envExample, /ADMIN_SESSION_SECRET/);
@@ -108,28 +141,46 @@ test("is configured for Vercel and Supabase", async () => {
 });
 
 test("includes protected admin review pages", async () => {
-  const [adminPage, adminDashboard, loginPage, authLib, supabaseLib, updateRoute] =
-    await Promise.all([
-      readFile(new URL("../app/admin/page.tsx", import.meta.url), "utf8"),
-      readFile(
-        new URL("../app/admin/AdminDashboard.tsx", import.meta.url),
-        "utf8",
+  const [
+    adminPage,
+    adminDashboard,
+    loginPage,
+    authLib,
+    supabaseLib,
+    updateRoute,
+    attachmentRoute,
+  ] = await Promise.all([
+    readFile(new URL("../app/admin/page.tsx", import.meta.url), "utf8"),
+    readFile(
+      new URL("../app/admin/AdminDashboard.tsx", import.meta.url),
+      "utf8",
+    ),
+    readFile(new URL("../app/admin/login/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/lib/admin-auth.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/lib/supabase.ts", import.meta.url), "utf8"),
+    readFile(
+      new URL("../app/api/admin/applications/[id]/route.ts", import.meta.url),
+      "utf8",
+    ),
+    readFile(
+      new URL(
+        "../app/api/admin/applications/[id]/attachment/route.ts",
+        import.meta.url,
       ),
-      readFile(new URL("../app/admin/login/page.tsx", import.meta.url), "utf8"),
-      readFile(new URL("../app/lib/admin-auth.ts", import.meta.url), "utf8"),
-      readFile(new URL("../app/lib/supabase.ts", import.meta.url), "utf8"),
-      readFile(
-        new URL("../app/api/admin/applications/[id]/route.ts", import.meta.url),
-        "utf8",
-      ),
-    ]);
+      "utf8",
+    ),
+  ]);
 
   assert.match(adminPage, /getAdminSession/);
   assert.match(adminPage, /fetchApplications/);
   assert.match(adminDashboard, /turcek-logo\.png/);
+  assert.match(adminDashboard, /admin-download-link/);
+  assert.match(adminDashboard, /attachment_name/);
   assert.match(loginPage, /LoginForm/);
   assert.match(authLib, /ADMIN_COOKIE_NAME/);
   assert.match(authLib, /timingSafeEqual/);
   assert.match(supabaseLib, /updateApplicationReview/);
   assert.match(updateRoute, /Admin oturumu gerekli/);
+  assert.match(attachmentRoute, /createApplicationAttachmentSignedUrl/);
+  assert.match(attachmentRoute, /Admin oturumu gerekli/);
 });

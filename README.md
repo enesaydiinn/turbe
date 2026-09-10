@@ -19,6 +19,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://fsxyhalmihldguiwxydg.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_eQ29YFpV2dOSOb5abmvizQ_vf-pFoc8
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 # SUPABASE_SECRET_KEY=sb_secret_your-secret-key
+SUPABASE_APPLICATION_FILES_BUCKET=application-files
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=change-this-password
@@ -40,12 +41,14 @@ Supabase SQL Editor veya Supabase CLI üzerinden migration dosyalarını sıras�
 ```bash
 supabase/migrations/202609020001_create_applications.sql
 supabase/migrations/202609020002_add_application_review_fields.sql
+supabase/migrations/202609100001_add_application_attachments.sql
 ```
 
 Migration `public.applications` tablosunu, indeksleri, panel başvurusu için en
 az dört tebliğci kontrolünü, 3-5 anahtar kelime kontrolünü, `updated_at`
-trigger'ını ve RLS ayarını oluşturur. API route service role anahtarıyla
-yazdığı için ek public insert policy gerektirmez.
+trigger'ını ve RLS ayarını oluşturur. Son migration başvuru dosyası alanlarını
+ve özel `application-files` Supabase Storage bucket'ını ekler. API route service
+role anahtarıyla yazdığı için ek public insert policy gerektirmez.
 
 ## Admin Paneli
 
@@ -66,6 +69,7 @@ NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 SUPABASE_SERVICE_ROLE_KEY
 # veya yeni anahtar yapısına geçtiyseniz SUPABASE_SECRET_KEY
+SUPABASE_APPLICATION_FILES_BUCKET
 NEXT_PUBLIC_SITE_URL
 ADMIN_USERNAME
 ADMIN_PASSWORD

@@ -1231,6 +1231,22 @@ section,
   width: 100%;
 }
 
+.file-field input[type="file"] {
+  cursor: pointer;
+}
+
+.field-help {
+  color: rgba(29, 38, 37, 0.58);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.field-help.field-error {
+  color: var(--burgundy);
+  font-weight: 800;
+}
+
 .field textarea {
   line-height: 1.55;
   resize: vertical;
@@ -1766,8 +1782,28 @@ section,
 }
 
 .admin-detail-list dd {
+  display: grid;
+  gap: 6px;
   line-height: 1.45;
   margin: 0;
+}
+
+.admin-download-link {
+  color: var(--teal);
+  font-weight: 900;
+  width: fit-content;
+}
+
+.admin-download-link:hover,
+.admin-download-link:focus-visible {
+  color: var(--burgundy);
+  outline: none;
+}
+
+.admin-detail-list small {
+  color: rgba(29, 38, 37, 0.55);
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .admin-panel-speakers ul {
