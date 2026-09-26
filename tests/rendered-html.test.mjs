@@ -22,6 +22,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Countdown/);
   assert.match(page, /CommitteeTabs/);
   assert.match(page, /I\. Uluslararası Türbeler Sempozyumu/);
+  assert.match(page, /TÜRÇEK ve İstanbul İl Kültür ve Turizm Müdürlüğü tarafından/);
   assert.match(page, /31 Mart - 1 Nisan 2027/);
   assert.match(page, /2027-03-31T09:00:00\+03:00/);
   assert.match(page, /Kur’ân ve Sünnet Perspektifinde Türbeler/);

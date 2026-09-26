@@ -403,7 +403,7 @@ export default function Home() {
         <div className="hero-overlay" />
         <div className="hero-content">
           <div className="hero-kicker">
-            <span>TÜRÇEK tarafından</span>
+            <span>TÜRÇEK ve İstanbul İl Kültür ve Turizm Müdürlüğü tarafından</span>
             <span>Fatih Belediyesi ev sahipliğinde</span>
             <span>İstanbul</span>
           </div>
