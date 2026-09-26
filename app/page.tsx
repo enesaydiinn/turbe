@@ -510,17 +510,20 @@ export default function Home() {
           <p className="eyebrow">Konu Başlıkları</p>
           <h2>Başvuru yapılabilecek akademik alanlar</h2>
         </div>
-        <div className="topic-grid">
+        <div className="topic-accordion" aria-label="Akademik konu başlıkları">
           {topicGroups.map((topic, index) => (
-            <article className="topic-card" key={topic.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{topic.title}</h3>
+            <details className="topic-panel" key={topic.title} open={index === 0}>
+              <summary>
+                <span className="topic-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="topic-title">{topic.title}</span>
+                <span className="topic-count">{topic.items.length} başlık</span>
+              </summary>
               <ul>
                 {topic.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </article>
+            </details>
           ))}
         </div>
       </section>
