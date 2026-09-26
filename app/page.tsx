@@ -394,18 +394,18 @@ export default function Home() {
             <span>İstanbul</span>
           </div>
           <h1 id="hero-title">I. Uluslararası Türbeler Sempozyumu</h1>
-          <p className="hero-subtitle">
-            <span>Geçmişten Geleceğe Türbe Kültürü</span>
-            <span>
-              Türbeleri dinî ilimler, şehir hafızası, mimari ve kültürel miras
-              ekseninde yeniden düşünmeye davet.
-            </span>
-          </p>
           <p className="hero-date">
             <span>31 Mart - 1 Nisan 2027</span>
             <span>International Symposium on Mausoleums-I</span>
             <span dir="rtl" lang="ar">المؤتمر الدولي الأول للأضرحة الإسلامية</span>
           </p>
+          <div className="hero-timebar">
+            <div className="timebar-heading">
+              <span>Başlangıca Kalan Süre</span>
+              <strong>31 Mart 2027, İstanbul</strong>
+            </div>
+            <Countdown targetDate="2027-03-31T09:00:00+03:00" />
+          </div>
           <div className="hero-actions">
             <a className="primary-action" href="#cagri">
               Keşfet
@@ -414,27 +414,6 @@ export default function Home() {
               Başvuru Yap
             </a>
           </div>
-        </div>
-        <div className="hero-timebar">
-          <div className="timebar-heading">
-            <span>Başlangıca Kalan Süre</span>
-            <strong>31 Mart 2027, İstanbul</strong>
-          </div>
-          <Countdown targetDate="2027-03-31T09:00:00+03:00" />
-          <dl className="hero-facts" aria-label="Sempozyum özeti">
-            <div>
-              <dt>Tarih</dt>
-              <dd>31 Mart - 1 Nisan 2027</dd>
-            </div>
-            <div>
-              <dt>Yer</dt>
-              <dd>İstanbul</dd>
-            </div>
-            <div>
-              <dt>Diller</dt>
-              <dd>Türkçe / Arapça / İngilizce</dd>
-            </div>
-          </dl>
         </div>
       </section>
 
