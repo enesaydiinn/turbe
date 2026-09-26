@@ -288,15 +288,11 @@ const travelRules = [
 const partnerLogos = [
   {
     name: "TÜRÇEK",
-    src: "/turcek-logo.png",
+    src: "/partners/turcek.png",
   },
   {
     name: "Fatih Belediye Başkanlığı",
     src: "/partners/fatih-belediyesi.png",
-  },
-  {
-    name: "T.C. İstanbul Valiliği",
-    src: "/partners/istanbul-valiligi.png",
   },
   {
     name: "İstanbul İl Kültür ve Turizm Müdürlüğü",
@@ -305,10 +301,6 @@ const partnerLogos = [
   {
     name: "Türkiye Yazma Eserler Kurumu Başkanlığı",
     src: "/partners/turkiye-yazma-eserler.png",
-  },
-  {
-    name: "Kocaeli Büyükşehir Belediyesi",
-    src: "/partners/kocaeli-buyuksehir.png",
   },
 ];
 

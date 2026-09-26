@@ -34,6 +34,9 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Sekretarya/);
   assert.match(page, /TÜRÇEK/);
   assert.match(page, /turcek-logo\.png/);
+  assert.match(page, /\/partners\/turcek\.png/);
+  assert.doesNotMatch(page, /\/partners\/istanbul-valiligi\.png/);
+  assert.doesNotMatch(page, /\/partners\/kocaeli-buyuksehir\.png/);
   assert.match(page, /İş birliği yapılan kurumlar/);
   assert.match(page, /Fatih Belediye Başkanlığı/);
   assert.match(page, /Kocaeli Büyükşehir Belediyesi/);
@@ -133,6 +136,7 @@ test("is configured for Vercel and Supabase", async () => {
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/hero-turbeler.png", import.meta.url));
   await access(new URL("../public/turcek-logo.png", import.meta.url));
+  await access(new URL("../public/partners/turcek.png", import.meta.url));
   await access(new URL("../public/partners/fatih-belediyesi.png", import.meta.url));
   await access(new URL("../public/partners/istanbul-valiligi.png", import.meta.url));
   await access(
