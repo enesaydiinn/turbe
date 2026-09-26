@@ -319,7 +319,7 @@ export function AdminDashboard({
       <section className="admin-hero">
         <div>
           <p className="eyebrow">Başvuru Paneli</p>
-          <h1>Uluslararası Türbeler Sempozyumu</h1>
+          <h1>I. Uluslararası Türbeler Sempozyumu</h1>
           <p>
             Bildiri ve panel başvurularını tek ekranda inceleyin, filtreleyin
             ve değerlendirme durumlarını güncelleyin.

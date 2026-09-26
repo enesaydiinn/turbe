@@ -18,9 +18,9 @@ const crimson = Crimson_Text({
   weight: ["400", "600", "700"],
 });
 
-const siteTitle = "Uluslararası Türbeler Sempozyumu";
+const siteTitle = "I. Uluslararası Türbeler Sempozyumu";
 const siteDescription =
-  "31 Mart - 1 Nisan 2027 tarihlerinde İstanbul'da düzenlenecek Uluslararası Türbeler Sempozyumu için tanıtım ve bildiri başvuru sitesi.";
+  "31 Mart - 1 Nisan 2027 tarihlerinde İstanbul'da düzenlenecek I. Uluslararası Türbeler Sempozyumu için tanıtım ve bildiri başvuru sitesi.";
 
 function parseSiteUrl(value: string | undefined) {
   const trimmed = value?.trim();

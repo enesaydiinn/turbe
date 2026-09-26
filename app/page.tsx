@@ -236,7 +236,7 @@ const importantDates = [
   ["21 Aralık 2026", "Kabul edilen bildirilerin ilanı"],
   ["1 Mart 2027", "Sempozyum programının ilanı"],
   ["15 Şubat 2027", "Tam metinlerin son gönderim tarihi"],
-  ["31 Mart - 1 Nisan 2027", "Uluslararası Türbeler Sempozyumu"],
+  ["31 Mart - 1 Nisan 2027", "I. Uluslararası Türbeler Sempozyumu"],
 ];
 
 const participationRules = [
@@ -393,7 +393,7 @@ export default function Home() {
             <span>Fatih Belediyesi ev sahipliğinde</span>
             <span>İstanbul</span>
           </div>
-          <h1 id="hero-title">Uluslararası Türbeler Sempozyumu</h1>
+          <h1 id="hero-title">I. Uluslararası Türbeler Sempozyumu</h1>
           <p className="hero-subtitle">
             <span>Geçmişten Geleceğe Türbe Kültürü</span>
             <span>
@@ -485,7 +485,7 @@ export default function Home() {
           </p>
           <p>
             Türbe araştırmalarına katkı sağlayacak özgün çalışmalarınızla I.
-            Uluslararası Türbeler Sempozyumu’na iştirakinizden memnuniyet
+            I. Uluslararası Türbeler Sempozyumu’na iştirakinizden memnuniyet
             duyacağız.
           </p>
         </div>
@@ -498,7 +498,7 @@ export default function Home() {
         </div>
         <div className="intro-copy info-copy">
           <p>
-            Uluslararası Türbeler Sempozyumu, Türbeler-Çeşmeler Taşınır ve
+            I. Uluslararası Türbeler Sempozyumu, Türbeler-Çeşmeler Taşınır ve
             Taşınmaz Kültür Varlıklarını Koruma ve Yaşatma Derneği (TÜRÇEK)
             tarafından, Fatih Belediyesi ev sahipliğinde; İstanbul Valiliği,
             İstanbul İl Kültür ve Turizm Müdürlüğü, Türkiye Yazma Eserler

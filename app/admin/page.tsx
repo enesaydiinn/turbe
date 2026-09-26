@@ -11,7 +11,7 @@ import { AdminDashboard } from "./AdminDashboard";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Admin Panel | Uluslararası Türbeler Sempozyumu",
+  title: "Admin Panel | I. Uluslararası Türbeler Sempozyumu",
 };
 
 export default async function AdminPage() {

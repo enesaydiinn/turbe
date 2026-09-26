@@ -21,7 +21,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /RegistrationForm/);
   assert.match(page, /Countdown/);
   assert.match(page, /CommitteeTabs/);
-  assert.match(page, /Uluslararası Türbeler Sempozyumu/);
+  assert.match(page, /I\. Uluslararası Türbeler Sempozyumu/);
   assert.match(page, /31 Mart - 1 Nisan 2027/);
   assert.match(page, /2027-03-31T09:00:00\+03:00/);
   assert.match(page, /Kur’ân ve Sünnet Perspektifinde Türbeler/);
@@ -37,7 +37,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(layout, /NEXT_PUBLIC_SITE_URL/);
   assert.match(layout, /VERCEL_PROJECT_PRODUCTION_URL/);
   assert.match(layout, /parseSiteUrl/);
-  assert.match(layout, /Uluslararası Türbeler Sempozyumu/);
+  assert.match(layout, /I\. Uluslararası Türbeler Sempozyumu/);
   assert.match(countdown, /setInterval/);
   assert.match(countdown, /Sempozyuma kalan süre/);
   assert.match(committeeTabs, /useState/);

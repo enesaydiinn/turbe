@@ -5,7 +5,7 @@ import { getAdminSession, isAdminAuthConfigured } from "@/app/lib/admin-auth";
 import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Admin Giriş | Uluslararası Türbeler Sempozyumu",
+  title: "Admin Giriş | I. Uluslararası Türbeler Sempozyumu",
 };
 
 export default async function AdminLoginPage() {
@@ -25,7 +25,7 @@ export default async function AdminLoginPage() {
           <p className="eyebrow">Admin Paneli</p>
           <h1>Başvuru Değerlendirme Girişi</h1>
           <p>
-            Uluslararası Türbeler Sempozyumu başvurularını görüntülemek ve
+            I. Uluslararası Türbeler Sempozyumu başvurularını görüntülemek ve
             değerlendirmek için giriş yapın.
           </p>
         </div>

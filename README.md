@@ -1,6 +1,6 @@
-# Uluslararası Türbeler Sempozyumu
+# I. Uluslararası Türbeler Sempozyumu
 
-TÜRÇEK için hazırlanan Uluslararası Türbeler Sempozyumu tanıtım ve başvuru sitesi.
+TÜRÇEK için hazırlanan I. Uluslararası Türbeler Sempozyumu tanıtım ve başvuru sitesi.
 Uygulama Vercel üzerinde Next.js olarak çalışacak, başvuruları Supabase
 Postgres veritabanındaki `applications` tablosuna kaydedecek şekilde düzenlendi.
 
