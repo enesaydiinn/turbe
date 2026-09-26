@@ -34,7 +34,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /İş birliği yapılan kurumlar/);
   assert.match(page, /Fatih Belediye Başkanlığı/);
   assert.match(page, /Kocaeli Büyükşehir Belediyesi/);
-  assert.match(page, /info@turbeler\.org\.tr/);
+  assert.match(page, /bilgi@turbeler\.org\.tr/);
   assert.match(layout, /NEXT_PUBLIC_SITE_URL/);
   assert.match(layout, /VERCEL_PROJECT_PRODUCTION_URL/);
   assert.match(layout, /parseSiteUrl/);
