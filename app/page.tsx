@@ -246,10 +246,11 @@ const overviewCards = [
 ];
 
 const importantDates = [
+  ["1 Ekim 2026", "Sempozyum ilanı"],
   ["30 Kasım 2026", "Bildiri özeti son gönderim tarihi"],
   ["21 Aralık 2026", "Kabul edilen bildirilerin ilanı"],
-  ["1 Mart 2027", "Sempozyum programının ilanı"],
   ["15 Şubat 2027", "Tam metinlerin son gönderim tarihi"],
+  ["1 Mart 2027", "Sempozyum programının ilanı"],
   ["31 Mart - 1 Nisan 2027", "I. Uluslararası Türbeler Sempozyumu"],
 ];
 
