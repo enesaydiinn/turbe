@@ -452,12 +452,12 @@ export default function Home() {
           </p>
           <p>
             Bilim Kurulu tarafından kabul edilen bildiriler, sempozyumda
-            sunulmasının ardından hakem ve editöryal değerlendirme süreçleri
+            sunulmasının ardından hakem ve editoryal değerlendirme süreçleri
             tamamlanarak bildiri kitabında yayımlanacaktır.
           </p>
           <p>
-            Türbe araştırmalarına katkı sağlayacak özgün çalışmalarınızla I.
-            I. Uluslararası Türbeler Sempozyumu’na iştirakinizden memnuniyet
+            Türbe araştırmalarına katkı sağlayacak özgün çalışmalarınızla
+            I.Uluslararası Türbeler Sempozyumu’na iştirakinizden memnuniyet
             duyacağız.
           </p>
         </div>
