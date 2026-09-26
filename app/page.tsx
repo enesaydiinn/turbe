@@ -238,13 +238,6 @@ const committeeGroups = [
   },
 ];
 
-const overviewCards = [
-  ["Ana Tema", "Geçmişten Geleceğe Türbe Kültürü"],
-  ["Başvuru Türü", "Bireysel bildiri veya panel önerisi"],
-  ["Resmî Diller", "Türkçe, Arapça ve İngilizce"],
-  ["Yayın Süreci", "Hakemli sempozyum bildiri kitabı"],
-];
-
 const importantDates = [
   ["1 Ekim 2026", "Sempozyum ilanı"],
   ["30 Kasım 2026", "Bildiri özeti son gönderim tarihi"],
@@ -425,17 +418,6 @@ export default function Home() {
               Başvuru Yap
             </a>
           </div>
-        </div>
-      </section>
-
-      <section className="overview-section" aria-label="Sempozyum kısa özeti">
-        <div className="overview-grid">
-          {overviewCards.map(([title, body]) => (
-            <article key={title}>
-              <span>{title}</span>
-              <strong>{body}</strong>
-            </article>
-          ))}
         </div>
       </section>
 

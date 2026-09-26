@@ -451,74 +451,6 @@ section,
   line-height: 1.75;
 }
 
-.overview-section {
-  background: var(--paper);
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-.overview-grid {
-  background: rgba(251, 247, 238, 0.94);
-  border: 1px solid rgba(182, 138, 74, 0.24);
-  border-top: 0;
-  box-shadow: 0 20px 52px rgba(29, 38, 37, 0.08);
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.overview-grid article {
-  background: linear-gradient(180deg, rgba(255, 253, 250, 0.9), rgba(244, 234, 216, 0.62));
-  border-left: 1px solid rgba(29, 38, 37, 0.09);
-  display: grid;
-  gap: 9px;
-  min-height: 118px;
-  padding: 24px;
-  position: relative;
-  transition:
-    background 180ms ease,
-    transform 180ms ease;
-}
-
-.overview-grid article:first-child {
-  border-left: 0;
-}
-
-.overview-grid article::before {
-  background: var(--gold);
-  content: "";
-  height: 3px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
-  width: 100%;
-}
-
-.overview-grid article:hover {
-  background: var(--surface);
-  transform: translateY(-3px);
-}
-
-.overview-grid article:hover::before {
-  transform: scaleX(1);
-}
-
-.overview-grid span {
-  color: var(--burgundy);
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.overview-grid strong {
-  color: var(--teal-dark);
-  font-family: var(--font-crimson), Georgia, serif;
-  font-size: 1.55rem;
-  line-height: 1.08;
-}
-
 .intro-band {
   align-items: start;
   background:
@@ -1891,7 +1823,6 @@ section,
     flex-basis: 220px;
   }
 
-  .overview-grid,
   .intro-band,
   .site-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2018,7 +1949,6 @@ section,
     font-size: 0.62rem;
   }
 
-  .overview-grid,
   .topic-accordion,
   .timeline,
   .committee-tablist,
