@@ -287,6 +287,10 @@ const travelRules = [
 
 const partnerLogos = [
   {
+    name: "TÜRÇEK",
+    src: "/turcek-logo.png",
+  },
+  {
     name: "Fatih Belediye Başkanlığı",
     src: "/partners/fatih-belediyesi.png",
   },
@@ -634,9 +638,9 @@ export default function Home() {
         </div>
         <div className="partner-marquee" aria-label="Paydaş kurum logoları">
           <div className="partner-track">
-            {[0, 1].map((group) => (
+            {[0, 1, 2, 3].map((group) => (
               <div
-                aria-hidden={group === 1}
+                aria-hidden={group > 0}
                 className="partner-group"
                 key={group}
               >
