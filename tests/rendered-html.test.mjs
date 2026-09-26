@@ -27,7 +27,8 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Kur’ân ve Sünnet Perspektifinde Türbeler/);
   assert.match(page, /İstanbul Valiliği/);
   assert.match(page, /Özet Kılavuzu/);
-  assert.match(page, /Sekreterya/);
+  assert.match(page, /Yürütme Kurulu/);
+  assert.match(page, /Sekretarya/);
   assert.match(page, /TÜRÇEK/);
   assert.match(page, /turcek-logo\.png/);
   assert.match(page, /İş birliği yapılan kurumlar/);
