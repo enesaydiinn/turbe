@@ -656,7 +656,8 @@ section,
 }
 
 .rules-section,
-.faq-section {
+.faq-section,
+.writing-rules-section {
   background:
     linear-gradient(180deg, var(--paper) 0%, #f4ead8 100%);
 }
@@ -739,6 +740,102 @@ section,
 
 .faq-list details[open] p {
   margin-top: 14px;
+}
+
+.writing-rules-list {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 34px;
+}
+
+.writing-rule-card {
+  background: rgba(255, 253, 250, 0.84);
+  border: 1px solid rgba(29, 38, 37, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.writing-rule-card:hover,
+.writing-rule-card[open] {
+  border-color: rgba(182, 138, 74, 0.42);
+  box-shadow: 0 18px 44px rgba(29, 38, 37, 0.08);
+}
+
+.writing-rule-card:hover {
+  transform: translateY(-3px);
+}
+
+.writing-rule-card summary {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  list-style: none;
+  min-height: 72px;
+  padding: 18px 20px;
+}
+
+.writing-rule-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.writing-rule-card summary::after {
+  align-items: center;
+  background: rgba(182, 138, 74, 0.16);
+  border-radius: 50%;
+  color: var(--burgundy);
+  content: "+";
+  display: inline-flex;
+  font-weight: 900;
+  height: 26px;
+  justify-content: center;
+  line-height: 1;
+  width: 26px;
+}
+
+.writing-rule-card[open] summary::after {
+  content: "-";
+}
+
+.writing-rule-card summary span {
+  color: var(--gold);
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.writing-rule-card summary strong {
+  color: var(--teal-dark);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.writing-rule-card ul {
+  border-top: 1px solid rgba(29, 38, 37, 0.08);
+  color: rgba(29, 38, 37, 0.72);
+  display: grid;
+  font-size: 0.94rem;
+  gap: 0;
+  line-height: 1.58;
+  list-style: none;
+  margin: 0;
+  padding: 4px 20px 20px;
+}
+
+.writing-rule-card li {
+  border-bottom: 1px solid rgba(29, 38, 37, 0.08);
+  padding: 12px 0;
+}
+
+.writing-rule-card li:last-child {
+  border-bottom: 0;
 }
 
 .committee-tabs {
@@ -1832,6 +1929,7 @@ section,
   .timeline,
   .rules-grid,
   .faq-list,
+  .writing-rules-list,
   .committee-tablist,
   .committee-people-grid,
   .admin-hero,
@@ -1955,6 +2053,7 @@ section,
   .committee-people-grid,
   .rules-grid,
   .faq-list,
+  .writing-rules-list,
   .application-form fieldset,
   .speaker-row {
     grid-template-columns: 1fr;

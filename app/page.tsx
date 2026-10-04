@@ -257,7 +257,7 @@ const participationRules = [
   "Sempozyumun resmî dilleri Türkçe, Arapça ve İngilizcedir.",
   "Bildirilerin sunum süresi, soru-cevap bölümü hariç 15 dakikadır.",
   "Bildiri özetleri Bilim Kurulu tarafından çift kör hakemlik esasına göre değerlendirilecektir.",
-  "Tam metinler en az 3.000, en fazla 8.000 kelime olmalıdır.",
+  "Tam metinler en az 3.000, en fazla 9.000 kelime olmalıdır.",
   "Sempozyumda sunulan ve yayıma uygun görülen bildiriler I. Uluslararası Türbeler Sempozyumu Bildirileri adıyla hakemli bildiri kitabında yayımlanacaktır.",
   "Bildiri özetleri ve tam metinler daha önce herhangi bir bilimsel toplantıda sunulmamış ve yayımlanmamış özgün akademik çalışmalar olmalıdır.",
 ];
@@ -270,6 +270,76 @@ const abstractGuide = [
   "Başvuru sırasında yazar adı-soyadı, akademik unvan, kurum, ORCID numarası, e-posta ve telefon bilgileri eksiksiz girilmelidir.",
   "E-posta yoluyla gönderilen başvurular değerlendirmeye alınmayacaktır.",
   "Özetler bilimsel özgünlük, yöntem, konuya uygunluk ve akademik katkı bakımından değerlendirilecektir.",
+];
+
+const fullTextWritingRules = [
+  {
+    title: "Genel Kurallar",
+    items: [
+      "Tam metinler 3.000-9.000 kelime arasında olmalıdır. Bu sınır özet ve kaynakça dâhil tüm metni kapsamaktadır.",
+      "Bildiriler daha önce yayımlanmamış, özgün akademik çalışmalar olmalıdır.",
+      "Metinler Microsoft Word (.docx) formatında hazırlanmalıdır.",
+      "Sayfa boyutu A4, kenar boşlukları her yönde 2,5 cm olmalıdır.",
+      "Yazı tipi Times New Roman, ana metin 12 punto, satır aralığı 1,15 ve metin hizası iki yana yaslı olmalıdır.",
+      "Paragraf ilk satır girintisi 0,5 cm, paragraf sonrası boşluk 6 nk olmalıdır.",
+    ],
+  },
+  {
+    title: "Başlık, Yazar ve Öz",
+    items: [
+      "Bildiri başlığı 14 punto, koyu, tamamı büyük harflerle ve ortalanmış olarak yazılmalıdır.",
+      "Yazar adı ve soyadı başlığın altında 12 punto ve ortalanmış olarak verilmelidir.",
+      "Unvan, kurum, e-posta ve ORCID bilgileri 10 punto dipnot olarak belirtilmelidir.",
+      "Öz 200-350 kelime arasında ve 10 punto olmalıdır.",
+      "Özün altında 3-5 anahtar kelime verilmelidir.",
+    ],
+  },
+  {
+    title: "Metnin Yapısı",
+    items: [
+      "Bildiri; çalışmanın niteliğine uygun olarak giriş, amaç ve kapsam, yöntem, bulgular/değerlendirme, sonuç ve kaynakça bölümlerini içermelidir.",
+      "Alt başlıklar 12 punto, koyu ve sola yaslı olarak yazılmalıdır.",
+    ],
+  },
+  {
+    title: "Atıf ve Alıntı",
+    items: [
+      "Bildirilerde İSNAD Atıf Sistemi 2 kullanılmalıdır.",
+      "Dipnotlar 10 punto ve tek satır aralığında düzenlenmelidir.",
+      "Üç satıra kadar olan doğrudan alıntılar tırnak içinde metin içerisinde verilmelidir.",
+      "Üç satırı aşan alıntılar, 10 punto, tek satır aralığı ve sağdan-soldan 1,5 cm girintili ayrı paragraf olarak verilmelidir.",
+      "Kaynakça İSNAD 2 kurallarına uygun şekilde hazırlanmalıdır.",
+    ],
+  },
+  {
+    title: "Dil ve Yazım",
+    items: [
+      "Türkçe bildirilerde Türk Dil Kurumunun güncel Yazım Kılavuzu, Arapça özel isim, terim ve eser adlarında ise Türkiye Diyanet Vakfı İslâm Ansiklopedisi yazım ve transkripsiyon esasları dikkate alınmalıdır.",
+    ],
+  },
+  {
+    title: "Benzerlik Raporu",
+    items: [
+      "Tam metin bildirilerin benzerlik oranı %25'i geçmemelidir.",
+      "Benzerlik raporu Turnitin üzerinden alınmalıdır.",
+      "Benzerlik raporu ayrıca yüklenmeyecek; raporun ilk sayfası tam metin bildiri dosyasının en başına, kapak sayfasından önce eklenecektir.",
+    ],
+  },
+  {
+    title: "Hakemlik ve Yayın",
+    items: [
+      "Tam metin bildiriler çift kör hakemlik sürecine tabi tutulacaktır. Hakem değerlendirmesi ve editöryal inceleme sonucunda kabul edilen bildiriler, bildiri kitabında yayımlanacaktır.",
+      "Bildiri metninin bilimsel içeriği, kaynakların doğruluğu, akademik etik ve telif haklarına uygunluk konusundaki sorumluluk yazara/yazarlara aittir.",
+    ],
+  },
+  {
+    title: "Tam Metin Son Gönderim Tarihi",
+    items: [
+      "15 Şubat 2027",
+      "Belirtilen tarihten sonra gönderilen tam metinler değerlendirmeye alınmayacaktır.",
+      "Tam metninizi göndermeden önce bu kuralları dikkatle inceleyiniz.",
+    ],
+  },
 ];
 
 const travelRules = [
@@ -378,6 +448,7 @@ export default function Home() {
           <a href="#paydaslar">Paydaşlar</a>
           <a href="#bilgiler">Sempozyum Bilgileri</a>
           <a href="#tarihler">Tarihler</a>
+          <a href="#tam-metin-kurallari">Yazım Kuralları</a>
           <a href="#basvuru">Başvurular</a>
           <a href="#iletisim">İletişim</a>
         </nav>
@@ -546,6 +617,33 @@ export default function Home() {
             <article key={rule}>
               <p>{rule}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="writing-rules-section" id="tam-metin-kurallari">
+        <div className="section-heading">
+          <p className="eyebrow">Tam Metin Bildiri Yazım Kuralları</p>
+          <h2>Bildiri kitabı için hazırlanacak tam metin esasları</h2>
+          <p>
+            I. Uluslararası Türbeler Sempozyumu kapsamında gönderilecek tam
+            metin bildirilerin aşağıdaki kurallara uygun olarak hazırlanması
+            gerekmektedir.
+          </p>
+        </div>
+        <div className="writing-rules-list">
+          {fullTextWritingRules.map((rule, index) => (
+            <details className="writing-rule-card" key={rule.title}>
+              <summary>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{rule.title}</strong>
+              </summary>
+              <ul>
+                {rule.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </details>
           ))}
         </div>
       </section>
