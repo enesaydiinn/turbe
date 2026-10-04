@@ -174,14 +174,21 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
     const wordCount = countWords(abstractText);
     const attachmentFile = getSelectedFile(form, "attachmentFile");
 
-    if (attachmentFile) {
-      const validationMessage = validateAttachment(attachmentFile);
+    if (!attachmentFile) {
+      const validationMessage = "Bildiri dosyası yüklemek zorunludur.";
 
-      if (validationMessage) {
-        setStatus("error");
-        setMessage(validationMessage);
-        return;
-      }
+      setAttachmentMessage(validationMessage);
+      setStatus("error");
+      setMessage(validationMessage);
+      return;
+    }
+
+    const validationMessage = validateAttachment(attachmentFile);
+
+    if (validationMessage) {
+      setStatus("error");
+      setMessage(validationMessage);
+      return;
     }
 
     if (wordCount < 150 || wordCount > 300) {
@@ -471,13 +478,14 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
         </label>
         <label className="field field-wide file-field">
           <span>
-            Bildiri Dosyası <small>PDF/DOC/DOCX, en fazla 5 MB</small>
+            Bildiri Dosyası * <small>PDF/DOC/DOCX, en fazla 5 MB</small>
           </span>
           <input
             accept={attachmentAccept}
             aria-describedby="attachment-help"
             name="attachmentFile"
             onChange={handleAttachmentChange}
+            required
             type="file"
           />
           <p

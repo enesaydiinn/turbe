@@ -59,6 +59,8 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(committeeTabs, /role="tablist"/);
   assert.match(committeeTabs, /committee-person-card/);
   assert.match(registrationForm, /attachmentFile/);
+  assert.match(registrationForm, /Bildiri Dosyası \*/);
+  assert.match(registrationForm, /name="attachmentFile"[\s\S]*required[\s\S]*type="file"/);
   assert.match(registrationForm, /maxAttachmentBytes = 5 \* 1024 \* 1024/);
   assert.match(registrationForm, /\/api\/applications\/attachment-upload/);
 });
@@ -112,6 +114,7 @@ test("is configured for Vercel and Supabase", async () => {
 
   assert.match(route, /insertApplication/);
   assert.match(route, /attachment_path/);
+  assert.match(route, /Bildiri dosyası yüklemek zorunludur/);
   assert.match(uploadRoute, /createApplicationAttachmentUpload/);
   assert.match(uploadRoute, /MAX_APPLICATION_ATTACHMENT_BYTES/);
   assert.match(supabaseLib, /NEXT_PUBLIC_SUPABASE_URL/);

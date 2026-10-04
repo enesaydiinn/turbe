@@ -208,26 +208,28 @@ function validatePayload(payload: ApplicationPayload) {
     return "Kişisel veri onayı zorunludur.";
   }
 
-  if (payload.attachment) {
-    const hasValidStoragePath =
-      /^applications\/\d{4}-\d{2}-\d{2}\/[0-9a-f-]{36}-[^/]+\.(pdf|doc|docx)$/i.test(
-        payload.attachment.path,
-      );
-    const normalizedType = normalizeApplicationAttachmentType(
-      payload.attachment.fileName,
-      payload.attachment.fileType,
-    );
+  if (!payload.attachment) {
+    return "Bildiri dosyası yüklemek zorunludur.";
+  }
 
-    if (
-      payload.attachment.bucket !== getApplicationAttachmentBucket() ||
-      !hasValidStoragePath ||
-      !normalizedType ||
-      payload.attachment.fileType !== normalizedType ||
-      payload.attachment.fileSize <= 0 ||
-      payload.attachment.fileSize > MAX_APPLICATION_ATTACHMENT_BYTES
-    ) {
-      return "Dosya bilgisi doğrulanamadı. Lütfen PDF veya Word dosyasını yeniden yükleyin.";
-    }
+  const hasValidStoragePath =
+    /^applications\/\d{4}-\d{2}-\d{2}\/[0-9a-f-]{36}-[^/]+\.(pdf|doc|docx)$/i.test(
+      payload.attachment.path,
+    );
+  const normalizedType = normalizeApplicationAttachmentType(
+    payload.attachment.fileName,
+    payload.attachment.fileType,
+  );
+
+  if (
+    payload.attachment.bucket !== getApplicationAttachmentBucket() ||
+    !hasValidStoragePath ||
+    !normalizedType ||
+    payload.attachment.fileType !== normalizedType ||
+    payload.attachment.fileSize <= 0 ||
+    payload.attachment.fileSize > MAX_APPLICATION_ATTACHMENT_BYTES
+  ) {
+    return "Dosya bilgisi doğrulanamadı. Lütfen PDF veya Word dosyasını yeniden yükleyin.";
   }
 
   return "";
