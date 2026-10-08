@@ -39,9 +39,11 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /Özet Kılavuzu/);
   assert.match(page, /Tam Metin Bildiri Yazım Kuralları/);
   assert.match(page, /3\.000-9\.000 kelime/);
+  assert.match(page, /Öz 150-300 kelime arasında/);
   assert.match(page, /İSNAD Atıf Sistemi 2/);
   assert.match(page, /Benzerlik raporu Turnitin üzerinden alınmalıdır/);
   assert.doesNotMatch(page, /8\.000 kelime/);
+  assert.doesNotMatch(page, /200-350 kelime/);
   assert.match(page, /Yürütme Kurulu/);
   assert.match(page, /Sekretarya/);
   assert.match(page, /names: \["Osman Gökmen", "Süleyman Sarpken"\]/);

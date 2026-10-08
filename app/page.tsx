@@ -285,7 +285,7 @@ const fullTextWritingRules = [
       "Bildiri başlığı 14 punto, koyu, tamamı büyük harflerle ve ortalanmış olarak yazılmalıdır.",
       "Yazar adı ve soyadı başlığın altında 12 punto ve ortalanmış olarak verilmelidir.",
       "Unvan, kurum, e-posta ve ORCID bilgileri 10 punto dipnot olarak belirtilmelidir.",
-      "Öz 200-350 kelime arasında ve 10 punto olmalıdır.",
+      "Öz 150-300 kelime arasında ve 10 punto olmalıdır.",
       "Özün altında 3-5 anahtar kelime verilmelidir.",
     ],
   },
