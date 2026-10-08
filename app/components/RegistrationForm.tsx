@@ -453,7 +453,10 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
           </select>
         </label>
         <label className="field field-wide">
-          <span>Anahtar Kelimeler * <small>3-5 ifade, virgülle ayırın</small></span>
+          <span>
+            Anahtar Kelimeler *{" "}
+            <small className="field-warning">3-5 ifade, virgülle ayırın</small>
+          </span>
           <input name="keywords" required type="text" />
         </label>
         <div className="field field-wide radio-field">
@@ -468,7 +471,12 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
           </label>
         </div>
         <label className="field field-wide">
-          <span>Özet * <small>{abstractWords}/300 kelime</small></span>
+          <span>
+            Özet *{" "}
+            <small className="field-warning">
+              150-300 kelime aralığında ({abstractWords}/300)
+            </small>
+          </span>
           <textarea
             name="abstractText"
             onChange={(event) => setAbstractWords(countWords(event.target.value))}
@@ -478,7 +486,8 @@ export function RegistrationForm({ topics }: RegistrationFormProps) {
         </label>
         <label className="field field-wide file-field">
           <span>
-            Bildiri Dosyası * <small>PDF/DOC/DOCX, en fazla 5 MB</small>
+            Bildiri Dosyası *{" "}
+            <small className="field-warning">Yalnızca PDF/DOC/DOCX, en fazla 5 MB</small>
           </span>
           <input
             accept={attachmentAccept}

@@ -1257,6 +1257,26 @@ section,
   margin-left: 6px;
 }
 
+.application-form .field span {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.application-form .field .field-warning {
+  background: rgba(135, 39, 70, 0.11);
+  border: 1px solid rgba(135, 39, 70, 0.32);
+  border-radius: 999px;
+  color: var(--burgundy);
+  display: inline-flex;
+  font-size: clamp(0.92rem, 0.88rem + 0.16vw, 1rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-left: 0;
+  padding: 5px 10px;
+}
+
 .field input,
 .field select,
 .field textarea {
