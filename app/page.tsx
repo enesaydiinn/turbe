@@ -741,8 +741,9 @@ export default function Home() {
         </div>
         <address>
           <a href="mailto:bilgi@turbeler.org.tr">bilgi@turbeler.org.tr</a>
-          <span>İstanbul / Türkiye</span>
-          <span>Fatih Belediyesi ev sahipliğinde yüz yüze gerçekleştirilecektir.</span>
+          <span>Fatih Kültür Sanat Merkezi</span>
+          <span>Akşemsettin Mahallesi Şair Cem Sokak No: 26 Fatih / İstanbul</span>
+          <span>Fatih Belediyesi Başkanlık Binası C Blok</span>
         </address>
       </footer>
     </main>
