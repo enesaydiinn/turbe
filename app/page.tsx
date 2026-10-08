@@ -229,7 +229,7 @@ const committeeGroups = [
     title: "Sekretarya / الأمانة العامة / Secretariat",
     description:
       "Başvuru takibi, duyurular ve katılımcı iletişimi için ana koordinasyon birimi.",
-    names: ["Osman Gökmen"],
+    names: ["Osman Gökmen", "Süleyman Sarpken"],
   },
 ];
 

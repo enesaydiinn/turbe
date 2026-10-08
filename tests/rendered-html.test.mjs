@@ -44,6 +44,7 @@ test("keeps the symposium homepage content in place", async () => {
   assert.doesNotMatch(page, /8\.000 kelime/);
   assert.match(page, /Yürütme Kurulu/);
   assert.match(page, /Sekretarya/);
+  assert.match(page, /names: \["Osman Gökmen", "Süleyman Sarpken"\]/);
   assert.match(page, /TÜRÇEK/);
   assert.match(page, /turcek-logo\.png/);
   assert.match(page, /\/partners\/turcek\.png/);
