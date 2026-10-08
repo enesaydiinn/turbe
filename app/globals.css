@@ -846,10 +846,10 @@ section,
 
 .committee-tablist {
   display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin: 0 auto 34px;
-  max-width: 1040px;
+  max-width: 1240px;
 }
 
 .committee-tab {
@@ -862,7 +862,7 @@ section,
   gap: 5px;
   justify-items: center;
   min-height: 72px;
-  padding: 14px 18px;
+  padding: 14px 12px;
   text-align: center;
   transition:
     background 180ms ease,
@@ -873,7 +873,7 @@ section,
 }
 
 .committee-tab span {
-  font-size: 0.96rem;
+  font-size: clamp(0.82rem, 0.74rem + 0.28vw, 0.96rem);
   font-weight: 900;
   line-height: 1.2;
   text-transform: uppercase;
