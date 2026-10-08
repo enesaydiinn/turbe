@@ -302,9 +302,9 @@ export function AdminDashboard({
           <Image
             alt="I. Uluslararası Türbeler Sempozyumu"
             className="admin-brand-logo"
-            height={494}
+            height={334}
             src="/turcek-logo.png"
-            width={1102}
+            width={746}
           />
           <strong>TÜRÇEK Admin</strong>
         </Link>

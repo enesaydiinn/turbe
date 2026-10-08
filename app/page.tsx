@@ -431,9 +431,9 @@ export default function Home() {
           <Image
             alt="I. Uluslararası Türbeler Sempozyumu"
             className="brand-logo"
-            height={494}
+            height={334}
             src="/turcek-logo.png"
-            width={1102}
+            width={746}
           />
         </a>
         <nav>
