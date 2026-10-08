@@ -351,20 +351,28 @@ const travelRules = [
 
 const partnerLogos = [
   {
+    height: 83,
     name: "TÜRÇEK",
     src: "/partners/turcek.png",
+    width: 250,
   },
   {
+    height: 600,
     name: "Fatih Belediye Başkanlığı",
     src: "/partners/fatih-belediyesi.png",
+    width: 600,
   },
   {
+    height: 511,
     name: "İstanbul İl Kültür ve Turizm Müdürlüğü",
     src: "/partners/istanbul-il-kultur-turizm.jpeg",
+    width: 415,
   },
   {
+    height: 122,
     name: "Türkiye Yazma Eserler Kurumu Başkanlığı",
     src: "/partners/turkiye-yazma-eserler.png",
+    width: 201,
   },
 ];
 
@@ -724,9 +732,9 @@ export default function Home() {
                   >
                     <Image
                       alt={partner.name}
-                      height={130}
+                      height={partner.height}
                       src={partner.src}
-                      width={220}
+                      width={partner.width}
                     />
                   </div>
                 ))}

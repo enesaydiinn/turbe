@@ -1083,7 +1083,7 @@ section,
 }
 
 .partner-track {
-  --partner-gap: 18px;
+  --partner-gap: 30px;
 
   animation: partner-scroll 34s linear infinite;
   display: flex;
@@ -1110,10 +1110,12 @@ section,
   border-radius: 8px;
   box-shadow: 0 18px 42px rgba(29, 38, 37, 0.1);
   display: flex;
-  flex: 0 0 238px;
-  height: 126px;
+  flex: 0 0 286px;
+  height: 134px;
   justify-content: center;
-  padding: 22px;
+  overflow: hidden;
+  padding: 24px;
+  position: relative;
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease,
@@ -1127,10 +1129,12 @@ section,
 }
 
 .partner-logo-card img {
+  display: block;
   height: auto;
-  max-height: 82px;
-  max-width: 188px;
+  max-height: 86px;
+  max-width: 224px;
   object-fit: contain;
+  object-position: center;
   width: auto;
 }
 
@@ -1956,7 +1960,7 @@ section,
   }
 
   .partner-logo-card {
-    flex-basis: 220px;
+    flex-basis: 250px;
   }
 
   .intro-band,
@@ -2132,18 +2136,18 @@ section,
   }
 
   .partner-track {
-    --partner-gap: 12px;
+    --partner-gap: 16px;
   }
 
   .partner-logo-card {
-    flex-basis: 184px;
+    flex-basis: 218px;
     height: 104px;
     padding: 16px;
   }
 
   .partner-logo-card img {
     max-height: 70px;
-    max-width: 146px;
+    max-width: 174px;
   }
 
   section,
