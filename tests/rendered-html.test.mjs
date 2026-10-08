@@ -45,6 +45,9 @@ test("keeps the symposium homepage content in place", async () => {
   assert.doesNotMatch(page, /8\.000 kelime/);
   assert.doesNotMatch(page, /200-350 kelime/);
   assert.match(page, /Yürütme Kurulu/);
+  assert.match(page, /Yönetim Kurulu/);
+  assert.match(page, /Prof\. Dr\. Ahmet Emre Bilgili/);
+  assert.match(page, /Dr\. Osman Gökmen/);
   assert.match(page, /Sekretarya/);
   assert.match(page, /names: \["Osman Gökmen", "Süleyman Sarpken"\]/);
   assert.match(page, /TÜRÇEK/);

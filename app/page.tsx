@@ -226,6 +226,12 @@ const committeeGroups = [
     ],
   },
   {
+    title: "Yönetim Kurulu / مجلس الإدارة / Management Board",
+    description:
+      "Sempozyumun akademik ve kurumsal yönünü yürüten yönetim birimi.",
+    names: ["Prof. Dr. Ahmet Emre Bilgili", "Dr. Osman Gökmen"],
+  },
+  {
     title: "Sekretarya / الأمانة العامة / Secretariat",
     description:
       "Başvuru takibi, duyurular ve katılımcı iletişimi için ana koordinasyon birimi.",
