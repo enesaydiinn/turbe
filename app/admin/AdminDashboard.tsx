@@ -300,11 +300,11 @@ export function AdminDashboard({
       <header className="admin-header">
         <Link className="admin-brand" href="/">
           <Image
-            alt="TÜRÇEK"
+            alt="I. Uluslararası Türbeler Sempozyumu"
             className="admin-brand-logo"
-            height={758}
+            height={494}
             src="/turcek-logo.png"
-            width={2073}
+            width={1102}
           />
           <strong>TÜRÇEK Admin</strong>
         </Link>

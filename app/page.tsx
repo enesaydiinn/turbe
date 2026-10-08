@@ -429,11 +429,11 @@ export default function Home() {
       <header className="site-header" aria-label="Ana gezinme">
         <a className="brand" href="#top" aria-label="Ana sayfaya dön">
           <Image
-            alt="TÜRÇEK"
+            alt="I. Uluslararası Türbeler Sempozyumu"
             className="brand-logo"
-            height={758}
+            height={494}
             src="/turcek-logo.png"
-            width={2073}
+            width={1102}
           />
         </a>
         <nav>
