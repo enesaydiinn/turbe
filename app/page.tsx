@@ -5,10 +5,10 @@ import { RegistrationForm } from "./components/RegistrationForm";
 
 const topicGroups = [
   {
-    title: "Kur’ân ve Sünnet Perspektifinde Türbeler",
+    title: "Kur’ân ve Sünnet Zaviyesinden Türbeler",
     items: [
       "Kur’ân-ı Kerîm’de kabir, ölüm ve âhiret tasavvuru",
-      "Kur’ân perspektifinde salihlerin hatırasının muhafazası",
+      "Kur’ân bakımından salihlerin hatırasının muhafazası",
       "Hadis literatüründe kabir ve türbe ziyareti",
       "Kabir ziyareti rivayetlerinin tarihî gelişimi",
       "Sahabe ve Tâbiîn döneminde kabir ziyareti",
@@ -28,7 +28,7 @@ const topicGroups = [
     ],
   },
   {
-    title: "Fıkıh Perspektifinde Türbeler",
+    title: "Fıkıh Zaviyesinden Türbeler",
     items: [
       "Mezheplere göre türbe ziyaretinin hükmü",
       "Kabir üzerine yapı inşa etmenin fıkhî boyutu",
@@ -87,7 +87,7 @@ const topicGroups = [
     ],
   },
   {
-    title: "Sosyoloji, Psikoloji ve Antropoloji Perspektifinden Türbeler",
+    title: "Sosyoloji, Psikoloji ve Antropoloji Zaviyesinden Türbeler",
     items: [
       "İnanç sosyolojisi",
       "Halk dindarlığı",
@@ -145,7 +145,7 @@ const topicGroups = [
       "Yazma eserlerde türbeler",
       "Seyahatnâmelerde türbeler",
       "Biyografi ve menâkıbnâmelerde türbe kültürü",
-      "Türbe araştırmalarında yeni perspektifler",
+      "Türbe araştırmalarında yeni bakış açıları",
     ],
   },
 ];
@@ -506,8 +506,8 @@ export default function Home() {
           <p>
             Bu doğrultuda TÜRÇEK tarafından, Fatih Belediyesi ev sahipliğinde
             ve çeşitli kamu kurumlarının katkılarıyla 31 Mart–1 Nisan 2027
-            tarihlerinde İstanbul’da “Geçmişten Geleceğe Türbe Kültürü” ana
-            temasıyla I. Uluslararası Türbeler Sempozyumu düzenlenecektir.
+            tarihlerinde İstanbul’da I. Uluslararası Türbeler Sempozyumu
+            düzenlenecektir.
           </p>
           <p>
             Sempozyumda; türbelerin dinî kaynaklardaki yeri, tarihî gelişimi,

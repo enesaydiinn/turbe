@@ -30,7 +30,11 @@ test("keeps the symposium homepage content in place", async () => {
   assert.match(page, /I\.Uluslararası Türbeler Sempozyumu/);
   assert.doesNotMatch(page, /I\.\s+I\. Uluslararası Türbeler Sempozyumu/);
   assert.match(page, /2027-03-31T09:00:00\+03:00/);
-  assert.match(page, /Kur’ân ve Sünnet Perspektifinde Türbeler/);
+  assert.match(page, /Kur’ân ve Sünnet Zaviyesinden Türbeler/);
+  assert.match(page, /Fıkıh Zaviyesinden Türbeler/);
+  assert.match(page, /Türbe araştırmalarında yeni bakış açıları/);
+  assert.doesNotMatch(page, /Geçmişten Geleceğe Türbe Kültürü/);
+  assert.doesNotMatch(page, /Perspektif/);
   assert.match(page, /İstanbul Valiliği/);
   assert.match(page, /Özet Kılavuzu/);
   assert.match(page, /Tam Metin Bildiri Yazım Kuralları/);
