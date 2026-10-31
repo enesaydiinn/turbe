@@ -1138,6 +1138,10 @@ section,
   width: auto;
 }
 
+.partner-logo-card .partner-vgm-logo {
+  transform: scale(1.25);
+}
+
 @keyframes partner-scroll {
   from {
     transform: translateX(0);

@@ -372,6 +372,13 @@ const partnerLogos = [
     width: 415,
   },
   {
+    className: "partner-vgm-logo",
+    height: 433,
+    name: "Vakıflar Genel Müdürlüğü",
+    src: "/partners/vakiflar-genel-mudurlugu.png",
+    width: 577,
+  },
+  {
     height: 122,
     name: "Türkiye Yazma Eserler Kurumu Başkanlığı",
     src: "/partners/turkiye-yazma-eserler.png",
@@ -736,6 +743,7 @@ export default function Home() {
                   >
                     <Image
                       alt={partner.name}
+                      className={partner.className}
                       height={partner.height}
                       src={partner.src}
                       width={partner.width}
