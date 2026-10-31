@@ -554,11 +554,12 @@ export default function Home() {
         <div className="intro-copy info-copy">
           <p>
             I. Uluslararası Türbeler Sempozyumu, Türbeler-Çeşmeler Taşınır ve
-            Taşınmaz Kültür Varlıklarını Koruma ve Yaşatma Derneği (TÜRÇEK)
-            tarafından, Fatih Belediyesi ev sahipliğinde; İstanbul Valiliği,
-            İstanbul İl Kültür ve Turizm Müdürlüğü, Türkiye Yazma Eserler
-            Kurumu Başkanlığı, Kocaeli Büyükşehir Belediyesi ve diğer paydaş
-            kurumların katkılarıyla gerçekleştirilecektir.
+            Taşınmaz Kültür Varlıklarını Koruma ve Yaşatma Derneği (TÜRÇEK) ve
+            İstanbul İl Kültür ve Turizm Müdürlüğü tarafından, Fatih Belediyesi
+            ev sahipliğinde; Vakıflar Genel Müdürlüğü, İstanbul Valiliği,
+            Türkiye Yazma Eserler Kurumu Başkanlığı,
+            Kocaeli Büyükşehir Belediyesi ve diğer paydaş kurumların
+            katkılarıyla gerçekleştirilecektir.
           </p>
           <p>
             Sempozyum 31 Mart - 1 Nisan 2027 tarihlerinde İstanbul’da yüz yüze
